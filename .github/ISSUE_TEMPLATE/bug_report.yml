@@ -1,0 +1,38 @@
+name: "不具合修正"
+description: 不具合修正
+title: "[Bug]: "
+labels: [ "bug" ]
+body:
+  - - type: input
+        id: version
+        attributes:
+          label: 不具合が発生しているバージョンorコミット
+        validations:
+          required: true
+  - type: textarea
+      id: bug-reproduction
+      attributes:
+        label: 再現手順
+        description: |
+          不具合を発生させるための再現手順を書き込んでください
+        placeholder: 説明
+      validations:
+        required: true
+  - type: textarea
+      id: bug-expectation
+      attributes:
+        label: 期待されること
+        description: |
+          再現手順を実施した際、期待される動作を書き込んでください
+        placeholder: 説明
+      validations:
+        required: true
+  - type: textarea
+      id: bug-actually-happening
+      attributes:
+        label: 実際に行われること
+        description: |
+          再現手順を実施した際、実際に発生している動作を書き込んでください
+        placeholder: 説明
+      validations:
+        required: true
