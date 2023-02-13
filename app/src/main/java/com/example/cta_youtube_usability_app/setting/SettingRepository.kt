@@ -15,9 +15,11 @@ import java.io.IOException
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "cta_youtube_usability_app_preferences")
 
 class SettingRepository (dataStore: DataStore<Preferences>){
-    val DEFINED_KEY = intPreferencesKey("defined_key")
+    //ボタンポジションの参照キー
+    private val buttonPositionKey = intPreferencesKey("button_position_key")
 
-    val definedKeyFlow : Flow<Int> = dataStore.data
+    //ボタンポジションのデータを読み取る
+    val buttonPositionFlow : Flow<Int> = dataStore.data
         .catch { exception ->
             if (exception is IOException){
                 emit(emptyPreferences())
@@ -25,8 +27,7 @@ class SettingRepository (dataStore: DataStore<Preferences>){
                 throw exception
             }
         }
-        .map {
-            preferences ->
-            preferences[DEFINED_KEY]?: 0
+        .map { preferences ->
+            preferences[buttonPositionKey]?: 0
         }
 }
