@@ -11,7 +11,8 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "com/example/cta_youtube_usability_app/setting")
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "cta_youtube_usability_app_preferences")
 
 class SettingRepository (dataStore: DataStore<Preferences>){
     val DEFINED_KEY = intPreferencesKey("defined_key")
