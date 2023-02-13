@@ -14,16 +14,16 @@ import java.io.IOException
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "cta_youtube_usability_app_preferences")
 
-class SettingRepository (dataStore: DataStore<Preferences>){
+class SettingRepository(private val dataStore: DataStore<Preferences>) {
     //ボタンポジションの参照キー
     private val buttonPositionKey = intPreferencesKey("button_position_key")
 
     //ボタンポジションのデータを読み取る
-    val buttonPositionFlow : Flow<Int> = dataStore.data
+    val buttonPositionFlow: Flow<Int> = dataStore.data
         .catch { exception ->
-            if (exception is IOException){
+            if (exception is IOException) {
                 emit(emptyPreferences())
-            }else{
+            } else {
                 throw exception
             }
         }
