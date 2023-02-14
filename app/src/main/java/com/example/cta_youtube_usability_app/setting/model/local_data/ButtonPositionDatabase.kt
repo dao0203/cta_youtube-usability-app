@@ -1,4 +1,4 @@
-package com.example.cta_youtube_usability_app.setting.data
+package com.example.cta_youtube_usability_app.setting.model.local_data
 
 import android.content.Context
 import androidx.room.Database
@@ -13,7 +13,7 @@ abstract class ButtonPositionDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: ButtonPositionDatabase? = null
 
-        fun getDatabase(context: Context): ButtonPositionDatabase{
+        fun getDatabase(context: Context): ButtonPositionDatabase {
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
