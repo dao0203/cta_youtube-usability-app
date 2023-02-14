@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ButtonPositionDao {
-    @Query("SELECT *FROM button_positions")
+    @Query("SELECT * FROM button_positions")
     fun getAllButtonPosition(): Flow<List<ButtonPosition>>
 
     @Insert
