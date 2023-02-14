@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "button_positions")
 data class ButtonPosition(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
     @ColumnInfo(name = "layout_name")
     val layoutName: String,        //レイアウト名
     @ColumnInfo(name = "full_screen_x")
