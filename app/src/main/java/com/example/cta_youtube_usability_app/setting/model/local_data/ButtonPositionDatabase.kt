@@ -9,17 +9,17 @@ import androidx.room.RoomDatabase
 abstract class ButtonPositionDatabase : RoomDatabase() {
     abstract fun buttonPositionDao(): ButtonPositionDao
 
-    companion object{
+    companion object {
         @Volatile
         private var INSTANCE: ButtonPositionDatabase? = null
 
         fun getDatabase(context: Context): ButtonPositionDatabase {
-            return INSTANCE ?: synchronized(this){
+            return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     ButtonPositionDatabase::class.java,
                     "button_position_database"
-                    ).build()
+                ).build()
                 INSTANCE = instance
                 //return instance
                 instance
