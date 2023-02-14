@@ -1,4 +1,4 @@
-package com.example.cta_youtube_usability_app.setting.database
+package com.example.cta_youtube_usability_app.setting.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
