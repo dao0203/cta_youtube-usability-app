@@ -56,4 +56,7 @@ dependencies {
     ksp("androidx.room:room-compiler:$room_version")
     // optional - Test helpers
     testImplementation("androidx.room:room-testing:$room_version")
+
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
 }
