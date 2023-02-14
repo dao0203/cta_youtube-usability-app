@@ -3,7 +3,6 @@ package com.example.cta_youtube_usability_app.setting.model.local_data
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
-
 @Dao
 interface ButtonPositionDao {
     @Query("SELECT *FROM button_positions")
