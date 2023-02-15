@@ -13,11 +13,11 @@ body:
     validations:
       required: true
   - type: textarea
-      id: specification-description
-      attributes:
-        label: 詳細
-        description: |
-          上記の詳細を書き込んでください
-        placeholder: 説明
-      validations:
-        required: true
+    id: specification-description
+    attributes:
+      label: 詳細
+      description: |
+        上記の詳細を書き込んでください
+      placeholder: 説明
+    validations:
+      required: true
