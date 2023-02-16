@@ -1,8 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
-    id 'com.google.devtools.ksp' version '1.8.10-1.0.9'
+    id 'com.google.devtools.ksp' version '1.8.0-1.0.9'
 }
 
 android {
@@ -48,8 +47,6 @@ dependencies {
     //Roomの依存関係を追加
     implementation("androidx.room:room-runtime:2.5.0")
     annotationProcessor("androidx.room:room-compiler:2.5.0")
-    // To use Kotlin annotation processing tool (kapt)
-    kapt("androidx.room:room-compiler:2.5.0")
     // To use Kotlin Symbol Processing (KSP)
     ksp("androidx.room:room-compiler:2.5.0")
     // optional - Test helpers
