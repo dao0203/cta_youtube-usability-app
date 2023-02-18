@@ -24,9 +24,9 @@ import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPosi
 data class CloseVideoButton(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "cvb_id")
-    val CloseVideoButtonId: Int,  //動画閉じるボタンID
+    val closeVideoButtonId: Int,  //動画閉じるボタンID
     @ColumnInfo(name = "cvb_x")
-    val CloseVideoButtonX: Int,   //動画閉じるボタンのX座標
+    val closeVideoButtonX: Int,   //動画閉じるボタンのX座標
     @ColumnInfo(name = "cvb_y")
-    val CloseVideoButtonY: Int    //動画閉じるボタンのY座標
+    val closeVideoButtonY: Int    //動画閉じるボタンのY座標
 )

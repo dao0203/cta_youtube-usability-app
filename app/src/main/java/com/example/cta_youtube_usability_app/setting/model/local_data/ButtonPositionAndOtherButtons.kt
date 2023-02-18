@@ -24,7 +24,7 @@ data class ButtonPositionAndOtherButtons(
     val playButton: PlayButton,
     @Relation(
         parentColumn = "bp_cvb_id",
-        entityColumn = "cvb_iv"
+        entityColumn = "cvb_id"
     )
     val closeVideoButton: CloseVideoButton
 )
