@@ -4,16 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.CloseVideoButton
-import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.FullScreenButton
-import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.PlayButton
 
-@Database(
-    entities = [ButtonPosition::class,
-        FullScreenButton::class,
-        PlayButton::class,
-        CloseVideoButton::class], version = 1
-)
+@Database(entities = [ButtonPosition::class], version = 1)
 abstract class ButtonPositionDatabase : RoomDatabase() {
     abstract fun buttonPositionDao(): ButtonPositionDao
 
@@ -29,7 +21,6 @@ abstract class ButtonPositionDatabase : RoomDatabase() {
                     "button_position_database"
                 ).build()
                 INSTANCE = instance
-                //return instance
                 instance
             }
         }

@@ -1,30 +1,15 @@
 package com.example.cta_youtube_usability_app.setting.model.local_data.children_entity
 
 import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.ForeignKey
-import androidx.room.PrimaryKey
-import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPosition
 
 /**
  * データクラス：全画面ボタンテーブル
  */
-@Entity(
-    tableName = "full_screen_button",
-    foreignKeys = [
-        //fullScreenButtonIdを外部キーに設定
-        ForeignKey(
-            entity = ButtonPosition::class,
-            parentColumns = arrayOf("bp_fsb_id"),
-            childColumns = arrayOf("fsb_id"),
-            onDelete = ForeignKey.CASCADE  //親も消えると子も消える
-        )
-    ]
-)
+//@Entity(tableName = "full_screen_button")
 data class FullScreenButton(
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "fsb_id")
-    val fullScreenButtonId: Int = 0, //全画面ボタンID
+//    @PrimaryKey(autoGenerate = true)
+//    @ColumnInfo(name = "fsb_id")
+//    val fullScreenButtonId: Int = 0, //全画面ボタンID
     @ColumnInfo(name = "fsb_x")
     val fullScreenButtonX: Int,      //全画面ボタンのX座標
     @ColumnInfo(name = "fsb_y")
