@@ -1,4 +1,4 @@
-package com.example.cta_youtube_usability_app.setting.model.local_data.parent_entity
+package com.example.cta_youtube_usability_app.setting.model.local_data.children_entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
