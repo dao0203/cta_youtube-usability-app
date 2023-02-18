@@ -22,7 +22,7 @@ fun isOriented(screenOrientation: ScreenOrientation): Boolean {
 /**
  * データクラス：ボタン位置テーブル
  */
-@Entity(tableName = "button_position",)
+@Entity(tableName = "button_position")
 data class ButtonPosition(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
@@ -31,7 +31,7 @@ data class ButtonPosition(
     @ColumnInfo(name = "screen_orientation")
     val screenOrientation: Boolean = isOriented(ScreenOrientation.VERTICAL), //スマホの向き
     @ColumnInfo(name = "bp_fsb_id")
-    val fullScreenButtonId : Int,  //全画面ボタンID
+    val fullScreenButtonId: Int,  //全画面ボタンID
     @ColumnInfo(name = "bp_pb_id")
     val playButtonId: Int,         //再生ボタンID
     @ColumnInfo(name = "bp_cvb_id")
