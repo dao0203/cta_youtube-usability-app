@@ -5,15 +5,20 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ButtonPositionDao {
+
+    @Transaction
     @Query("SELECT * FROM button_position")
-    suspend fun getAllButtonPosition(): List<ButtonPosition>
+    suspend fun getAllButtonPosition(): List<ButtonPositionAndOtherButtons>
 
+    @Transaction
     @Insert
-    suspend fun insertButtonPosition(buttonPosition: ButtonPosition)
+    suspend fun insertButtonPosition(buttonPosition: ButtonPositionAndOtherButtons)
 
+    @Transaction
     @Update
-    suspend fun updateButtonPosition(buttonPosition: ButtonPosition)
+    suspend fun updateButtonPosition(buttonPosition: ButtonPositionAndOtherButtons)
 
+    @Transaction
     @Delete
-    suspend fun deleteButtonPosition(buttonPosition: ButtonPosition)
+    suspend fun deleteButtonPosition(buttonPosition: ButtonPositionAndOtherButtons)
 }
