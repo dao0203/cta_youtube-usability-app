@@ -41,5 +41,5 @@ data class ButtonPosition(
     @ColumnInfo(name = "close_button_y")
     val closeButtonY: Int,         //動画閉じるボタンのY座標
     @ColumnInfo(name = "screen_orientation")
-    val screenOrientation: Boolean = isOriented(ScreenOrientation.HORIZONTAL) //スマホの向き　
+    val screenOrientation: Boolean = isOriented(ScreenOrientation.VERTICAL) //スマホの向き　
 )
