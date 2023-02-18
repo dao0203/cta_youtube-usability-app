@@ -4,6 +4,21 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/** 画面の向きEnumクラス **/
+enum class ScreenOrientation {
+    VERTICAL,
+    HORIZONTAL;
+}
+
+/** どちらの向きを指しているかを決めるメソッド **/
+fun isOriented(screenOrientation: ScreenOrientation): Boolean {
+    return when (screenOrientation) {
+        ScreenOrientation.VERTICAL -> false
+        ScreenOrientation.HORIZONTAL -> true
+
+    }
+}
+
 /**
  * データクラス：ボタン位置テーブル
  */
@@ -26,5 +41,5 @@ data class ButtonPosition(
     @ColumnInfo(name = "close_button_y")
     val closeButtonY: Int,         //動画閉じるボタンのY座標
     @ColumnInfo(name = "screen_orientation")
-    val screenOrientation: Boolean //スマホの向き　false->横　true->縦
+    val screenOrientation: Boolean = isOriented(ScreenOrientation.HORIZONTAL) //スマホの向き　
 )
