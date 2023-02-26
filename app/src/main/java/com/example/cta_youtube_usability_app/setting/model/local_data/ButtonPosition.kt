@@ -8,20 +8,7 @@ import com.example.cta_youtube_usability_app.setting.model.local_data.children_e
 import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.FullScreenButton
 import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.PlayButton
 
-/** 画面の向きEnumクラス **/
-enum class ScreenOrientation {
-    VERTICAL,
-    HORIZONTAL;
-}
 
-/** どちらの向きを指しているかを決めるメソッド **/
-fun isOriented(screenOrientation: ScreenOrientation): Boolean {
-    return when (screenOrientation) {
-        ScreenOrientation.VERTICAL -> false
-        ScreenOrientation.HORIZONTAL -> true
-
-    }
-}
 
 /**
  * データクラス：ボタン位置テーブル
@@ -57,7 +44,7 @@ data class ButtonPosition(
     @ColumnInfo(name = "layout_name")
     val layoutName: String,        //レイアウト名
     @ColumnInfo(name = "screen_orientation")
-    val screenOrientation: Boolean = isOriented(ScreenOrientation.VERTICAL), //スマホの向き
+    val horizontal: Boolean = true, //スマホの向き
     @Embedded
     val fullScreenButton: FullScreenButton,
     @Embedded
