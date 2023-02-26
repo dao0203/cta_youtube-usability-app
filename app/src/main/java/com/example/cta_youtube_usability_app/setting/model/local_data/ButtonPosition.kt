@@ -29,10 +29,4 @@ data class ButtonPosition(
     val playButton: PlayButton,
     @Embedded
     val closeVideoButton: CloseVideoButton
-//    @ColumnInfo(name = "bp_fsb_id")
-//    val fullScreenButtonId: Int,  //全画面ボタンID
-//    @ColumnInfo(name = "bp_pb_id")
-//    val playButtonId: Int,         //再生ボタンID
-//    @ColumnInfo(name = "bp_cvb_id")
-//    val closeButtonId: Int         //動画閉じるボタンID
 )
