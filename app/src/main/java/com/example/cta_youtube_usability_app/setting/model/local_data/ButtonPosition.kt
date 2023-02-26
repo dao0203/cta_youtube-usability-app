@@ -15,28 +15,6 @@ import com.example.cta_youtube_usability_app.setting.model.local_data.children_e
  */
 @Entity(
     tableName = "button_position",
-//    foreignKeys = [
-//        ForeignKey(
-//            entity = FullScreenButton::class,
-//            parentColumns = arrayOf("fsb_id"),
-//            childColumns = arrayOf("bp_fsb_id"),
-//            onDelete = ForeignKey.CASCADE  //親も消えると子も消える
-//        ),
-//        ForeignKey(
-//            entity = PlayButton::class,
-//            parentColumns = arrayOf("pb_id"),
-//            childColumns = arrayOf("bp_pb_id"),
-//            onDelete = ForeignKey.CASCADE  //親も消えれば子も消える
-//        ),
-//        ForeignKey(
-//            //closeVideoButtonIdを外部キーに設定
-//            entity = CloseVideoButton::class,
-//            parentColumns = arrayOf("cvb_id"),
-//            childColumns = arrayOf("bp_cvb_id"),
-//            onDelete = ForeignKey.CASCADE  // 親も消えれば子も消えr
-//        )
-//
-//    ]
 )
 data class ButtonPosition(
     @PrimaryKey(autoGenerate = true)
