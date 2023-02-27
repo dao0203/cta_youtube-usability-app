@@ -4,24 +4,34 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPositionTable
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.stateIn
 
 class ButtonPositionViewModel(private val repository: ButtonPositionRepository) : ViewModel() {
 
-    fun getAllButtonPositionData() = viewModelScope.launch {
-        repository.getAllButtonPositionData()
+    val allButtonPositionData: StateFlow<List<ButtonPositionTable>?> =
+        flow<List<ButtonPositionTable>> {
+            //flow内でemitメソッドを使用して1つずつ送信される
+            emit(repository.getAllButtonPositionData())
+        }.stateIn(//stateInメソッドを使用してStateFlowに変換
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = null
+        )
+
+    fun insertButtonPosition(buttonPosition: ButtonPositionTable) = flow {
+        //emit関数で値を送信することが出来r
+        emit(repository.insertButtonPosition(buttonPosition))
     }
 
-    fun insertButtonPosition(buttonPosition: ButtonPositionTable) = viewModelScope.launch {
-        repository.insertButtonPosition(buttonPosition)
+    fun updateButtonPosition(buttonPosition: ButtonPositionTable) = flow {
+        emit(repository.updateButtonPosition(buttonPosition))
     }
 
-    fun updateButtonPosition(buttonPosition: ButtonPositionTable) = viewModelScope.launch {
-        repository.updateButtonPosition(buttonPosition)
-    }
-
-    fun deleteButtonPosition(buttonPosition: ButtonPositionTable) = viewModelScope.launch {
-        repository.deleteButtonPosition(buttonPosition)
+    fun deleteButtonPosition(buttonPosition: ButtonPositionTable) = flow {
+        emit(repository.deleteButtonPosition(buttonPosition))
     }
 }
 
