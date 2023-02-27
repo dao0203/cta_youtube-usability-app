@@ -9,16 +9,15 @@ import androidx.room.Update
 @Dao
 interface ButtonPositionDao {
 
-    @Query("SELECT * FROM button_position")
-    suspend fun getAllButtonPosition(): List<ButtonPosition>
-
+    @Query("SELECT * FROM button_position_table")
+    suspend fun getAllButtonPosition(): List<ButtonPositionTable>
 
     @Insert
-    suspend fun insertButtonPosition(buttonPosition: ButtonPosition)
+    suspend fun insertButtonPosition(buttonPosition: ButtonPositionTable)
 
     @Update
-    suspend fun updateButtonPosition(buttonPosition: ButtonPosition)
+    suspend fun updateButtonPosition(buttonPosition: ButtonPositionTable)
 
     @Delete
-    suspend fun deleteButtonPosition(buttonPosition: ButtonPosition)
+    suspend fun deleteButtonPosition(buttonPosition: ButtonPositionTable)
 }

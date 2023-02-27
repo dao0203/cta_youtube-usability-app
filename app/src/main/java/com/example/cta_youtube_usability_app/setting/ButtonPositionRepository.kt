@@ -1,9 +1,9 @@
 package com.example.cta_youtube_usability_app.setting
 
 import androidx.annotation.WorkerThread
-import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPosition
 import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPositionDao
 
+import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPositionTable
 class ButtonPositionRepository(private val buttonPositionDao: ButtonPositionDao) {
 
     /** ボタンポジション取得メソッド **/
