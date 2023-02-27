@@ -5,8 +5,10 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.CloseVideoButtonPosition
+import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.FastForwardButtonPosition
 import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.FullScreenButtonPosition
 import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.PlayButtonPosition
+import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.RewindButtonPosition
 
 enum class Orientation {
     PORTRAIT,
@@ -31,5 +33,9 @@ data class ButtonPositionTable(
     @Embedded
     val playButton: PlayButtonPosition,
     @Embedded
-    val closeVideoButton: CloseVideoButtonPosition
+    val closeVideoButton: CloseVideoButtonPosition,
+    @Embedded
+    val fastForwardButtonPosition: FastForwardButtonPosition,
+    @Embedded
+    val rewindButtonPosition: RewindButtonPosition
 )
