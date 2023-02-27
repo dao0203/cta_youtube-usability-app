@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.stateIn
 class ButtonPositionViewModel(private val repository: ButtonPositionRepository) : ViewModel() {
 
     val allButtonPositionData: StateFlow<List<ButtonPositionEntity>?> =
-        flow<List<ButtonPositionEntity>> {
+        flow {
             //flow内でemitメソッドを使用して1つずつ送信される
             emit(repository.getAllButtonPositionData())
         }.stateIn(//stateInメソッドを使用してStateFlowに変換
