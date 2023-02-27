@@ -1,5 +1,6 @@
 package com.example.cta_youtube_usability_app.setting
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -10,6 +11,10 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 
 class ButtonPositionViewModel(private val repository: ButtonPositionRepository) : ViewModel() {
+    companion object {
+        //エラー用
+        const val TAG = "ButtonPositionViewModel"
+    }
 
     val allButtonPositionData: StateFlow<List<ButtonPositionEntity>?> =
         flow {
@@ -22,16 +27,29 @@ class ButtonPositionViewModel(private val repository: ButtonPositionRepository) 
         )
 
     fun insertButtonPosition(buttonPosition: ButtonPositionEntity) = flow {
-        //emit関数で値を送信することが出来r
-        emit(repository.insertButtonPosition(buttonPosition))
+        try {
+            //emit関数で値を送信することが出来る
+            emit(repository.insertButtonPosition(buttonPosition))
+        } catch (e: Exception) {
+            Log.e(TAG, "$e")
+        }
     }
 
     fun updateButtonPosition(buttonPosition: ButtonPositionEntity) = flow {
-        emit(repository.updateButtonPosition(buttonPosition))
+        try {
+            emit(repository.updateButtonPosition(buttonPosition))
+        } catch (e: Exception) {
+            Log.e(TAG, "$e")
+        }
+
     }
 
     fun deleteButtonPosition(buttonPosition: ButtonPositionEntity) = flow {
-        emit(repository.deleteButtonPosition(buttonPosition))
+        try {
+            emit(repository.deleteButtonPosition(buttonPosition))
+        } catch (e: Exception) {
+            Log.e(TAG, "$e")
+        }
     }
 }
 
