@@ -7,7 +7,7 @@ import androidx.room.Query
 import androidx.room.Update
 
 @Dao
-interface ButtonPositionDao {
+interface ButtonPositionTableDao {
 
     @Query("SELECT * FROM button_position_table")
     suspend fun getAllButtonPosition(): List<ButtonPositionTable>
