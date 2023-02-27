@@ -52,4 +52,7 @@ dependencies {
     ksp("androidx.room:room-compiler:2.5.0")
     // optional - Test helpers
     testImplementation("androidx.room:room-testing:2.5.0")
+    //viewModelの依存関係を追加
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+
 }
