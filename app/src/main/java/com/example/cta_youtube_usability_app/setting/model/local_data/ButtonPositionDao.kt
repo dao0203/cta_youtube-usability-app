@@ -12,7 +12,6 @@ interface ButtonPositionDao {
     @Query("SELECT * FROM button_position")
     suspend fun getAllButtonPosition(): List<ButtonPosition>
 
-
     @Insert
     suspend fun insertButtonPosition(buttonPosition: ButtonPosition)
 

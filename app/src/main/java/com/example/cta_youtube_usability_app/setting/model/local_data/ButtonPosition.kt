@@ -8,8 +8,6 @@ import com.example.cta_youtube_usability_app.setting.model.local_data.children_e
 import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.FullScreenButton
 import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.PlayButton
 
-
-
 /**
  * データクラス：ボタン位置テーブル
  */

@@ -7,7 +7,6 @@ import androidx.room.ColumnInfo
  */
 
 data class PlayButton(
-
     @ColumnInfo(name = "pb_x")
     val playButtonX: Int,          //再生ボタンのX座標
     @ColumnInfo(name = "pb_y")
