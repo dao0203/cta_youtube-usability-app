@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [ButtonPositionTable::class], version = 1, exportSchema = false)
 abstract class ButtonPositionDatabase : RoomDatabase() {
-    abstract fun buttonPositionDao(): ButtonPositionDao
+    abstract fun buttonPositionDao(): ButtonPositionTableDao
 
     companion object {
         @Volatile
