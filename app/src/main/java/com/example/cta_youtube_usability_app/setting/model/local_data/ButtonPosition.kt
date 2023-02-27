@@ -8,6 +8,11 @@ import com.example.cta_youtube_usability_app.setting.model.local_data.children_e
 import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.FullScreenButton
 import com.example.cta_youtube_usability_app.setting.model.local_data.children_entity.PlayButton
 
+enum class Orientation {
+    PORTRAIT,
+    LANDSCAPE//横向き
+}
+
 /**
  * データクラス：ボタン位置テーブル
  */
@@ -20,7 +25,7 @@ data class ButtonPosition(
     @ColumnInfo(name = "layout_name")
     val layoutName: String,        //レイアウト名
     @ColumnInfo(name = "screen_orientation")
-    val horizontal: Boolean = true, //スマホの向き
+    val orientation: Orientation, //スマホの向き
     @Embedded
     val fullScreenButton: FullScreenButton,
     @Embedded
