@@ -19,9 +19,9 @@ enum class Orientation {
  * データクラス：ボタン位置テーブル
  */
 @Entity(
-    tableName = "button_position_table",
+    tableName = "button_position_entity",
 )
-data class ButtonPositionTable(
+data class ButtonPositionEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
     @ColumnInfo(name = "layout_name")
