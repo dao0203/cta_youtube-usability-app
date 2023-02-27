@@ -6,10 +6,10 @@ import androidx.room.ColumnInfo
  * データクラス：全画面ボタンテーブル
  */
 
-data class FullScreenButton(
-    @ColumnInfo(name = "fsb_x")
-    val fullScreenButtonX: Int,      //全画面ボタンのX座標
-    @ColumnInfo(name = "fsb_y")
-    val fullScreenButtonY: Int       //全画面ボタンのY座標
+data class FullScreenButtonPosition(
+    @ColumnInfo(name = "fsbp_x")
+    val fullScreenButtonPositionX: Int,      //全画面ボタンのX座標
+    @ColumnInfo(name = "fsbp_y")
+    val fullScreenButtonPositionY: Int       //全画面ボタンのY座標
 )
 

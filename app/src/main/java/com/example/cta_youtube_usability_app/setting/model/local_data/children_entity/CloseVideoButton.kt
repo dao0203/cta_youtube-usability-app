@@ -6,9 +6,9 @@ import androidx.room.ColumnInfo
  * データクラス：動画を閉じるボタン
  */
 
-data class CloseVideoButton(
-    @ColumnInfo(name = "cvb_x")
-    val closeVideoButtonX: Int,   //動画閉じるボタンのX座標
-    @ColumnInfo(name = "cvb_y")
-    val closeVideoButtonY: Int    //動画閉じるボタンのY座標
+data class CloseVideoButtonPosition(
+    @ColumnInfo(name = "cvbp_x")
+    val closeVideoButtonPositionX: Int,   //動画閉じるボタンのX座標
+    @ColumnInfo(name = "cvbp_y")
+    val closeVideoButtonPositionY: Int    //動画閉じるボタンのY座標
 )
