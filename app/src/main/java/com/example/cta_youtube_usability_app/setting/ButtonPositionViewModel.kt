@@ -3,7 +3,7 @@ package com.example.cta_youtube_usability_app.setting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPosition
+import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPositionTable
 import kotlinx.coroutines.launch
 
 class ButtonPositionViewModel(private val repository: ButtonPositionRepository) : ViewModel() {
@@ -12,15 +12,15 @@ class ButtonPositionViewModel(private val repository: ButtonPositionRepository) 
         repository.getAllButtonPositionData()
     }
 
-    fun insertButtonPosition(buttonPosition: ButtonPosition) = viewModelScope.launch {
+    fun insertButtonPosition(buttonPosition: ButtonPositionTable) = viewModelScope.launch {
         repository.insertButtonPosition(buttonPosition)
     }
 
-    fun updateButtonPosition(buttonPosition: ButtonPosition) = viewModelScope.launch {
+    fun updateButtonPosition(buttonPosition: ButtonPositionTable) = viewModelScope.launch {
         repository.updateButtonPosition(buttonPosition)
     }
 
-    fun deleteButtonPosition(buttonPosition: ButtonPosition) = viewModelScope.launch {
+    fun deleteButtonPosition(buttonPosition: ButtonPositionTable) = viewModelScope.launch {
         repository.deleteButtonPosition(buttonPosition)
     }
 }
