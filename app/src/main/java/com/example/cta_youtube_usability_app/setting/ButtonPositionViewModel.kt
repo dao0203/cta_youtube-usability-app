@@ -11,9 +11,9 @@ import kotlinx.coroutines.launch
 
 class ButtonPositionViewModel(private val repository: ButtonPositionRepository) : ViewModel() {
 
-    val allButtonPositionData: StateFlow<List<ButtonPosition>?> = repository.allButtonPositionData
-        .stateIn(viewModelScope, SharingStarted.Eagerly, null)
-
+    fun getAllButtonPositionData() = viewModelScope.launch {
+        repository.getAllButtonPositionData()
+    }
 
     fun insertButtonPosition(buttonPosition: ButtonPosition) = viewModelScope.launch {
         repository.insertButtonPosition(buttonPosition)
@@ -26,7 +26,6 @@ class ButtonPositionViewModel(private val repository: ButtonPositionRepository) 
     fun deleteButtonPosition(buttonPosition: ButtonPosition) = viewModelScope.launch {
         repository.deleteButtonPosition(buttonPosition)
     }
-
 }
 
 //ButtonPositionViewModelに引数があるため、Factoryを作成していく
