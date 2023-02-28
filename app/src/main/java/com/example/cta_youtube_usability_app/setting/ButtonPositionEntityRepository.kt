@@ -2,9 +2,9 @@ package com.example.cta_youtube_usability_app.setting
 
 import androidx.annotation.WorkerThread
 import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPositionEntity
-import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPositionTableDao
+import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPositionEntityDao
 
-class ButtonPositionRepository(private val buttonPositionDao: ButtonPositionTableDao) {
+class ButtonPositionEntityRepository(private val buttonPositionDao: ButtonPositionEntityDao) {
 
     /** ボタンポジション取得メソッド **/
     @WorkerThread
@@ -14,19 +14,19 @@ class ButtonPositionRepository(private val buttonPositionDao: ButtonPositionTabl
 
     /** ボタンポジション追加メソッド **/
     @WorkerThread//WorkerThreadで動くように明示してあげる
-    suspend fun insertButtonPosition(buttonPosition: ButtonPositionEntity) {
-        buttonPositionDao.insertButtonPosition(buttonPosition)
+    suspend fun insertButtonPosition(buttonPositionEntity: ButtonPositionEntity) {
+        buttonPositionDao.insertButtonPosition(buttonPositionEntity)
     }
 
     /** ボタンポジション更新メソッド **/
     @WorkerThread
-    suspend fun updateButtonPosition(buttonPosition: ButtonPositionEntity) {
-        buttonPositionDao.updateButtonPosition(buttonPosition)
+    suspend fun updateButtonPosition(buttonPositionEntity: ButtonPositionEntity) {
+        buttonPositionDao.updateButtonPosition(buttonPositionEntity)
     }
 
     /** ボタンポジション削除メソッド **/
     @WorkerThread
-    suspend fun deleteButtonPosition(buttonPosition: ButtonPositionEntity) {
-        buttonPositionDao.deleteButtonPosition(buttonPosition)
+    suspend fun deleteButtonPosition(buttonPositionEntity: ButtonPositionEntity) {
+        buttonPositionDao.deleteButtonPosition(buttonPositionEntity)
     }
 }
