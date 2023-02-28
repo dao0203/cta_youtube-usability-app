@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class ButtonPositionViewModel(private val repository: ButtonPositionEntityRepository) :
+class ButtonPositionViewModel(private val repository: ButtonPositionRepository) :
     ViewModel() {
 
     //データベース操作をしているときはUIを一時的に操作できないようにする変数
@@ -73,7 +73,7 @@ class ButtonPositionViewModel(private val repository: ButtonPositionEntityReposi
 }
 
 //ButtonPositionViewModelに引数があるため、Factoryを作成していく
-class ButtonPositionViewModelFactory(private val repository: ButtonPositionEntityRepository) :
+class ButtonPositionViewModelFactory(private val repository: ButtonPositionRepository) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ButtonPositionViewModel::class.java)) {
