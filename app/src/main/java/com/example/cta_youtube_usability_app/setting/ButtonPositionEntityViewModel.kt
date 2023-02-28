@@ -11,11 +11,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class ButtonPositionViewModel(private val repository: ButtonPositionEntityRepository) : ViewModel() {
-    companion object {
-        //エラー用
-        const val TAG = "ButtonPositionViewModel"
-    }
+class ButtonPositionViewModel(private val repository: ButtonPositionEntityRepository) :
+    ViewModel() {
 
     //データベース操作をしているときはUIを一時的に操作できないようにする変数
     //StateFlowでFragmentに値が変化したことを通知する
