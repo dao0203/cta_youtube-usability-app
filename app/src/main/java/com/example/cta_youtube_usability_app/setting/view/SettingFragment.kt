@@ -1,4 +1,4 @@
-package com.example.cta_youtube_usability_app.setting.model.remote_data
+package com.example.cta_youtube_usability_app.setting.view
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

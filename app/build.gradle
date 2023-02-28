@@ -7,7 +7,9 @@ plugins {
 android {
     namespace 'com.example.cta_youtube_usability_app'
     compileSdk 33
-
+    viewBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId "com.example.cta_youtube_usability_app"
         minSdk 25
@@ -34,11 +36,10 @@ android {
 }
 
 dependencies {
-    //epoxyの依存関係を追加
-    implementation 'com.airbnb.android:epoxy:5.1.1'
-    implementation 'con.airbnb.android:epoxy-processor:5.1.1'
-    // To use Kotlin Symbol Processing (KSP)
-    ksp("androidx.room:room-compiler:2.5.0")
+    //Groupieの依存関係を追加
+    implementation 'com.github.lisawray.groupie:groupie:2.10.1'
+    implementation 'com.github.lisawray.groupie:groupie-viewbinding:2.10.1'
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.8.0'

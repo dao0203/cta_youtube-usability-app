@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.cta_youtube_usability_app.R
-import com.example.cta_youtube_usability_app.setting.model.remote_data.ARG_PARAM1
-import com.example.cta_youtube_usability_app.setting.model.remote_data.ARG_PARAM2
+import com.example.cta_youtube_usability_app.setting.view.ARG_PARAM1
+import com.example.cta_youtube_usability_app.setting.view.ARG_PARAM2
 
 /**
  * A simple [Fragment] subclass.
