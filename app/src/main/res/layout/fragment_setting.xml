@@ -2,18 +2,41 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SettingFragment"
+    >
 
     <TextView
         android:id="@+id/landscape_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/landscape_text"
-        />
+        android:textStyle="bold"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/landscape_recycler_view"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/landscape_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@id/portrait_text"
+        app:layout_constraintTop_toBottomOf="@id/landscape_text" />
+
     <TextView
         android:id="@+id/portrait_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/portrait_text"
-        />
+        android:textStyle="bold"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/landscape_recycler_view" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/portrait_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/portrait_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>
