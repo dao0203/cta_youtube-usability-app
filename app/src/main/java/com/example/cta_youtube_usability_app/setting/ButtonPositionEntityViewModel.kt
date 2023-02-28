@@ -17,7 +17,7 @@ class ButtonPositionViewModel(private val repository: ButtonPositionRepository) 
     //データベース操作をしているときはUIを一時的に操作できないようにする変数
     //StateFlowでFragmentに値が変化したことを通知する
     private val _settingUiState: MutableStateFlow<SettingUiState> =
-        MutableStateFlow(SettingUiState.Normal)
+        MutableStateFlow(SettingUiState.Success)
     val settingUiState: StateFlow<SettingUiState> = _settingUiState
 
     val allButtonPositionData: StateFlow<List<ButtonPositionEntity>?> =
@@ -25,7 +25,7 @@ class ButtonPositionViewModel(private val repository: ButtonPositionRepository) 
             _settingUiState.value = SettingUiState.Loading
             try {//flow内でemitメソッドを使用して1つずつ送信される
                 emit(repository.getAllButtonPositionData())
-                _settingUiState.value = SettingUiState.Normal
+                _settingUiState.value = SettingUiState.Success
             } catch (e: Exception) {
                 _settingUiState.value = SettingUiState.Error(e)
             }
@@ -40,7 +40,7 @@ class ButtonPositionViewModel(private val repository: ButtonPositionRepository) 
             try {
                 _settingUiState.value = SettingUiState.Loading
                 repository.insertButtonPosition(buttonPosition)
-                _settingUiState.value = SettingUiState.Normal
+                _settingUiState.value = SettingUiState.Success
             } catch (e: Exception) {
                 _settingUiState.value = SettingUiState.Error(e)
             }
@@ -52,7 +52,7 @@ class ButtonPositionViewModel(private val repository: ButtonPositionRepository) 
             try {
                 _settingUiState.value = SettingUiState.Loading
                 repository.updateButtonPosition(buttonPosition)
-                _settingUiState.value = SettingUiState.Normal
+                _settingUiState.value = SettingUiState.Success
             } catch (e: Exception) {
                 _settingUiState.value = SettingUiState.Error(e)
             }
@@ -64,7 +64,7 @@ class ButtonPositionViewModel(private val repository: ButtonPositionRepository) 
             try {
                 _settingUiState.value = SettingUiState.Loading
                 repository.deleteButtonPosition(buttonPosition)
-                _settingUiState.value = SettingUiState.Normal
+                _settingUiState.value = SettingUiState.Success
             } catch (e: Exception) {
                 _settingUiState.value = SettingUiState.Error(e)
             }
@@ -85,7 +85,7 @@ class ButtonPositionViewModelFactory(private val repository: ButtonPositionRepos
 }
 
 sealed class SettingUiState {
-    object Normal : SettingUiState()
+    object Success : SettingUiState()
     data class Error(val exception: Throwable) : SettingUiState()
     object Loading : SettingUiState()
 }
