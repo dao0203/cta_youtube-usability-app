@@ -16,7 +16,8 @@ class ButtonPositionViewModel(private val repository: ButtonPositionEntityReposi
 
     //データベース操作をしているときはUIを一時的に操作できないようにする変数
     //StateFlowでFragmentに値が変化したことを通知する
-    private val _settingUiState: MutableStateFlow<SettingUiState> = MutableStateFlow(SettingUiState.Normal)
+    private val _settingUiState: MutableStateFlow<SettingUiState> =
+        MutableStateFlow(SettingUiState.Normal)
     val settingUiState: StateFlow<SettingUiState> = _settingUiState
 
     val allButtonPositionData: StateFlow<List<ButtonPositionEntity>?> =
@@ -51,6 +52,7 @@ class ButtonPositionViewModel(private val repository: ButtonPositionEntityReposi
             try {
                 _settingUiState.value = SettingUiState.Loading
                 repository.updateButtonPosition(buttonPosition)
+                _settingUiState.value = SettingUiState.Normal
             } catch (e: Exception) {
                 _settingUiState.value = SettingUiState.Error(e)
             }
@@ -62,6 +64,7 @@ class ButtonPositionViewModel(private val repository: ButtonPositionEntityReposi
             try {
                 _settingUiState.value = SettingUiState.Loading
                 repository.deleteButtonPosition(buttonPosition)
+                _settingUiState.value = SettingUiState.Normal
             } catch (e: Exception) {
                 _settingUiState.value = SettingUiState.Error(e)
             }
