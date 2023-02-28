@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
-class ButtonPositionViewModel(private val repository: ButtonPositionRepository) : ViewModel() {
+class ButtonPositionViewModel(private val repository: ButtonPositionEntityRepository) : ViewModel() {
     companion object {
         //エラー用
         const val TAG = "ButtonPositionViewModel"
@@ -73,7 +73,7 @@ class ButtonPositionViewModel(private val repository: ButtonPositionRepository) 
 }
 
 //ButtonPositionViewModelに引数があるため、Factoryを作成していく
-class ButtonPositionViewModelFactory(private val repository: ButtonPositionRepository) :
+class ButtonPositionViewModelFactory(private val repository: ButtonPositionEntityRepository) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ButtonPositionViewModel::class.java)) {
