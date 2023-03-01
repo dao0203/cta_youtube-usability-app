@@ -16,17 +16,18 @@ class ButtonPositionViewModel(private val repository: ButtonPositionEntityReposi
 
     //データベース操作をしているときはUIを一時的に操作できないようにする変数
     //StateFlowでFragmentに値が変化したことを通知する
-    private val _isLoading: MutableStateFlow<UiState> = MutableStateFlow(UiState.Success)
-    val isLoading: StateFlow<UiState> = _isLoading
+    private val _settingUiState: MutableStateFlow<SettingUiState> =
+        MutableStateFlow(SettingUiState.Success)
+    val settingUiState: StateFlow<SettingUiState> = _settingUiState
 
     val allButtonPositionData: StateFlow<List<ButtonPositionEntity>?> =
         flow {
-            _isLoading.value = UiState.IsLoading
+            _settingUiState.value = SettingUiState.Loading
             try {//flow内でemitメソッドを使用して1つずつ送信される
                 emit(repository.getAllButtonPositionData())
-                _isLoading.value = UiState.Success
+                _settingUiState.value = SettingUiState.Success
             } catch (e: Exception) {
-                _isLoading.value = UiState.Error(e)
+                _settingUiState.value = SettingUiState.Error(e)
             }
         }.stateIn(//stateInメソッドを使用してStateFlowに変換
             scope = viewModelScope,
@@ -37,11 +38,11 @@ class ButtonPositionViewModel(private val repository: ButtonPositionEntityReposi
     fun insertButtonPosition(buttonPosition: ButtonPositionEntity) {
         viewModelScope.launch {
             try {
-                _isLoading.value = UiState.IsLoading
+                _settingUiState.value = SettingUiState.Loading
                 repository.insertButtonPosition(buttonPosition)
-                _isLoading.value = UiState.Success
+                _settingUiState.value = SettingUiState.Success
             } catch (e: Exception) {
-                _isLoading.value = UiState.Error(e)
+                _settingUiState.value = SettingUiState.Error(e)
             }
         }
     }
@@ -49,10 +50,11 @@ class ButtonPositionViewModel(private val repository: ButtonPositionEntityReposi
     fun updateButtonPosition(buttonPosition: ButtonPositionEntity) {
         viewModelScope.launch {
             try {
-                _isLoading.value = UiState.IsLoading
+                _settingUiState.value = SettingUiState.Loading
                 repository.updateButtonPosition(buttonPosition)
+                _settingUiState.value = SettingUiState.Success
             } catch (e: Exception) {
-                _isLoading.value = UiState.Error(e)
+                _settingUiState.value = SettingUiState.Error(e)
             }
         }
     }
@@ -60,10 +62,11 @@ class ButtonPositionViewModel(private val repository: ButtonPositionEntityReposi
     fun deleteButtonPosition(buttonPosition: ButtonPositionEntity) {
         viewModelScope.launch {
             try {
-                _isLoading.value = UiState.IsLoading
+                _settingUiState.value = SettingUiState.Loading
                 repository.deleteButtonPosition(buttonPosition)
+                _settingUiState.value = SettingUiState.Success
             } catch (e: Exception) {
-                _isLoading.value = UiState.Error(e)
+                _settingUiState.value = SettingUiState.Error(e)
             }
         }
     }
@@ -81,8 +84,8 @@ class ButtonPositionViewModelFactory(private val repository: ButtonPositionEntit
     }
 }
 
-sealed class UiState {
-    object Success : UiState()
-    data class Error(val exception: Throwable) : UiState()
-    object IsLoading : UiState()
+sealed class SettingUiState {
+    object Success : SettingUiState()
+    data class Error(val exception: Throwable) : SettingUiState()
+    object Loading : SettingUiState()
 }
