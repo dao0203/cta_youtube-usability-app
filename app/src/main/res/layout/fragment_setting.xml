@@ -20,6 +20,7 @@
         android:id="@+id/land_radio_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:checkedButton="@+id/option_land_youtube_layout"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/port_text"
         app:layout_constraintTop_toBottomOf="@id/land_text">
@@ -57,13 +58,14 @@
         android:id="@+id/port_radio_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:checkedButton="@+id/option_port_youtube_layout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/port_text">
 
         <RadioButton
             android:id="@+id/option_port_youtube_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/youtube_layout" />
 
         <RadioButton
