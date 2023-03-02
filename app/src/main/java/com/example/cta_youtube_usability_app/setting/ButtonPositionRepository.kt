@@ -4,7 +4,7 @@ import androidx.annotation.WorkerThread
 import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPositionEntity
 import com.example.cta_youtube_usability_app.setting.model.local_data.ButtonPositionEntityDao
 
-class ButtonPositionEntityRepository(private val buttonPositionDao: ButtonPositionEntityDao) {
+class ButtonPositionRepository(private val buttonPositionDao: ButtonPositionEntityDao) {
 
     /** ボタンポジション取得メソッド **/
     @WorkerThread
