@@ -2,14 +2,17 @@ package com.example.cta_youtube_usability_app
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.datastore.preferences.core.edit
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 
 import com.example.cta_youtube_usability_app.databinding.FragmentSettingBinding
+import kotlinx.coroutines.launch
 
 
 class SettingFragment : Fragment() {
@@ -22,6 +25,23 @@ class SettingFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+
+        // TODO:このラジオグループの動作をそれぞれ実装するとエラーが起きるので修正する
+        //横向きレイアウトのラジオグループの動作
+        binding.landRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            val radioButton = binding.root.findViewById<RadioButton>(checkedId)
+            lifecycleScope.launch {
+                onRandRadioButtonClicked(radioButton)
+            }
+        }
+
+        //横向きレイアウトのラジオグループの動作
+        binding.landRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            val radioButton = binding.root.findViewById<RadioButton>(checkedId)
+            lifecycleScope.launch {
+                onPortRadioButtonClicked(radioButton)
+            }
+        }
     }
 
     override fun onCreateView(
@@ -40,7 +60,7 @@ class SettingFragment : Fragment() {
     }
 
     //viewから受け取ったラジオボタンの動作でDataStoreのvalueを更新するメソッド
-    suspend fun onRadioButtonClicked(view: View) {
+    suspend fun onRandRadioButtonClicked(view: View) {
 
         if (view is RadioButton) {
             val checked = view.isChecked
@@ -49,28 +69,51 @@ class SettingFragment : Fragment() {
                 //横向きのレイアウト
                 R.id.option_land_youtube_layout ->
                     if (checked) {
-                        updateLandSelectedLayoutId(requireContext(), "1")
+                        updateLandSelectedLayoutId(this.requireContext(), "1")
                     }
                 R.id.option_land_right_hand ->
                     if (checked) {
-                        updateLandSelectedLayoutId(requireContext(), "2")
+                        updateLandSelectedLayoutId(this.requireContext(), "2")
                     }
                 R.id.option_land_left_hand ->
                     if (checked) {
-                        updateLandSelectedLayoutId(requireContext(), "3")
+                        updateLandSelectedLayoutId(this.requireContext(), "3")
                     }
                 //縦向きのレイアウト
                 R.id.option_port_youtube_layout ->
                     if (checked) {
-                        updatePortSelectedLayoutId(requireContext(), "1")
+                        updatePortSelectedLayoutId(this.requireContext(), "1")
                     }
                 R.id.option_port_right_hand ->
                     if (checked) {
-                        updatePortSelectedLayoutId(requireContext(), "2")
+                        updatePortSelectedLayoutId(this.requireContext(), "2")
                     }
                 R.id.option_port_left_hand ->
                     if (checked) {
-                        updatePortSelectedLayoutId(requireContext(), "3")
+                        updatePortSelectedLayoutId(this.requireContext(), "3")
+                        Log.d(tag, "3って送られてるよ！！")
+                    }
+            }
+        }
+    }
+
+    suspend fun onPortRadioButtonClicked(view: View) {
+        if (view is RadioButton) {
+            val checked = view.isChecked
+
+            when (view.getId()) {
+                R.id.option_port_youtube_layout ->
+                    if (checked) {
+                        updatePortSelectedLayoutId(this.requireContext(), "1")
+                    }
+                R.id.option_port_right_hand ->
+                    if (checked) {
+                        updatePortSelectedLayoutId(this.requireContext(), "2")
+                    }
+                R.id.option_port_left_hand ->
+                    if (checked) {
+                        updatePortSelectedLayoutId(this.requireContext(), "3")
+                        Log.d(tag, "3って送られてるよ！！")
                     }
             }
         }
