@@ -5,37 +5,37 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/landscape_text"
+        android:id="@+id/land_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/landscape_text"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/landscape_radio_button"
+        app:layout_constraintBottom_toTopOf="@id/land_radio_group"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
-        android:id="@+id/landscape_radio_button"
+        android:id="@+id/land_radio_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/portrait_text"
-        app:layout_constraintTop_toBottomOf="@id/landscape_text">
+        app:layout_constraintBottom_toTopOf="@id/port_text"
+        app:layout_constraintTop_toBottomOf="@id/land_text">
 
         <RadioButton
-            android:id="@+id/option_landscape_youtube_layout"
+            android:id="@+id/option_land_youtube_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/youtube_layout" />
 
         <RadioButton
-            android:id="@+id/option_landscape_right_hand"
+            android:id="@+id/option_land_right_hand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/right_handed" />
 
         <RadioButton
-            android:id="@+id/option_landscape_left_hand"
+            android:id="@+id/option_land_left_hand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/left_handed" />
@@ -43,35 +43,35 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/portrait_text"
+        android:id="@+id/port_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/portrait_text"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/landscape_radio_button" />
+        app:layout_constraintTop_toBottomOf="@id/land_radio_group" />
 
     <RadioGroup
-        android:id="@+id/portrait_radio_group"
+        android:id="@+id/port_radio_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/portrait_text">
+        app:layout_constraintTop_toBottomOf="@id/port_text">
 
         <RadioButton
-            android:id="@+id/option_portrait_youtube_layout"
+            android:id="@+id/option_port_youtube_layout"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/youtube_layout" />
 
         <RadioButton
-            android:id="@+id/option_portrait_right_hand"
+            android:id="@+id/option_port_right_hand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/right_handed" />
 
         <RadioButton
-            android:id="@+id/option_portrait_left_hand"
+            android:id="@+id/option_port_left_hand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/left_handed" />
