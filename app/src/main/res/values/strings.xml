@@ -3,4 +3,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="landscape_text">横向き</string>
     <string name="portrait_text">縦向き</string>
+    <string name="right_handed">右利き</string>
+    <string name="left_handed">左利き</string>
+    <string name="youtube_layout">YouTubeレイアウト</string>
 </resources>
