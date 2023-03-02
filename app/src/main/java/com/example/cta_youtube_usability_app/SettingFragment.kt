@@ -1,4 +1,4 @@
-package com.example.cta_youtube_usability_app.setting
+package com.example.cta_youtube_usability_app
 
 import android.content.Context
 import android.os.Bundle
@@ -8,10 +8,6 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.datastore.preferences.core.edit
 import androidx.fragment.app.Fragment
-import com.example.cta_youtube_usability_app.LAND_SELECTED_LAYOUT_ID_KEY
-import com.example.cta_youtube_usability_app.PORT_SELECTED_LAYOUT_ID_KEY
-import com.example.cta_youtube_usability_app.R
-import com.example.cta_youtube_usability_app.dataStore
 
 import com.example.cta_youtube_usability_app.databinding.FragmentSettingBinding
 
@@ -36,6 +32,11 @@ class SettingFragment : Fragment() {
         _binding = FragmentSettingBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     //viewから受け取ったラジオボタンの動作でDataStoreのvalueを更新するメソッド
