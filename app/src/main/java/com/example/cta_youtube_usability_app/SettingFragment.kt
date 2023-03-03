@@ -10,9 +10,10 @@ import android.widget.RadioButton
 import androidx.datastore.preferences.core.edit
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-
 import com.example.cta_youtube_usability_app.databinding.FragmentSettingBinding
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class SettingFragment : Fragment() {
@@ -26,22 +27,7 @@ class SettingFragment : Fragment() {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
 
-        // TODO:このラジオグループの動作をそれぞれ実装するとエラーが起きるので修正する
-        //横向きレイアウトのラジオグループの動作
-        binding.landRadioGroup.setOnCheckedChangeListener { _, checkedId ->
-            val radioButton = binding.root.findViewById<RadioButton>(checkedId)
-            lifecycleScope.launch {
-                onRandRadioButtonClicked(radioButton)
-            }
-        }
 
-        //横向きレイアウトのラジオグループの動作
-        binding.landRadioGroup.setOnCheckedChangeListener { _, checkedId ->
-            val radioButton = binding.root.findViewById<RadioButton>(checkedId)
-            lifecycleScope.launch {
-                onPortRadioButtonClicked(radioButton)
-            }
-        }
     }
 
     override fun onCreateView(
@@ -54,13 +40,39 @@ class SettingFragment : Fragment() {
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //横向きレイアウトのラジオグループの動作
+        binding.landRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            val radioButton = binding.root.findViewById<RadioButton>(checkedId)
+            lifecycleScope.launch {
+                //データの更新
+                withContext(Dispatchers.IO){
+                    onRandRadioButtonClicked(radioButton)
+                }
+            }
+        }
+
+        //横向きレイアウトのラジオグループの動作
+        binding.landRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            val radioButton = binding.root.findViewById<RadioButton>(checkedId)
+            lifecycleScope.launch {
+                //データの更新
+                withContext(Dispatchers.IO){
+                    onPortRadioButtonClicked(radioButton)
+                }
+
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
     //viewから受け取ったラジオボタンの動作でDataStoreのvalueを更新するメソッド
-    suspend fun onRandRadioButtonClicked(view: View) {
+    private suspend fun onRandRadioButtonClicked(view: View) {
 
         if (view is RadioButton) {
             val checked = view.isChecked
@@ -97,7 +109,7 @@ class SettingFragment : Fragment() {
         }
     }
 
-    suspend fun onPortRadioButtonClicked(view: View) {
+    private suspend fun onPortRadioButtonClicked(view: View) {
         if (view is RadioButton) {
             val checked = view.isChecked
 
