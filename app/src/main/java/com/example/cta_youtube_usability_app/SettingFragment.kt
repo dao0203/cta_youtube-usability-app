@@ -2,7 +2,6 @@ package com.example.cta_youtube_usability_app
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,23 +20,18 @@ class SettingFragment : Fragment() {
     private var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
 
-    //RadioGroupのプロパティを作成
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSettingBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,15 +47,14 @@ class SettingFragment : Fragment() {
             }
         }
 
-        //横向きレイアウトのラジオグループの動作
-        binding.landRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+        //縦向きレイアウトのラジオグループの動作
+        binding.portRadioGroup.setOnCheckedChangeListener { _, checkedId ->
             val radioButton = binding.root.findViewById<RadioButton>(checkedId)
             lifecycleScope.launch {
                 //データの更新
                 withContext(Dispatchers.IO){
                     onPortRadioButtonClicked(radioButton)
                 }
-
             }
         }
     }
@@ -71,12 +64,10 @@ class SettingFragment : Fragment() {
         _binding = null
     }
 
-    //viewから受け取ったラジオボタンの動作でDataStoreのvalueを更新するメソッド
+    //横向きレイアウトのラジオボタンの動作でDataStoreのvalueを更新するメソッド
     private suspend fun onRandRadioButtonClicked(view: View) {
-
         if (view is RadioButton) {
             val checked = view.isChecked
-
             when (view.getId()) {
                 //横向きのレイアウト
                 R.id.option_land_youtube_layout ->
@@ -91,24 +82,11 @@ class SettingFragment : Fragment() {
                     if (checked) {
                         updateLandSelectedLayoutId(this.requireContext(), "3")
                     }
-                //縦向きのレイアウト
-                R.id.option_port_youtube_layout ->
-                    if (checked) {
-                        updatePortSelectedLayoutId(this.requireContext(), "1")
-                    }
-                R.id.option_port_right_hand ->
-                    if (checked) {
-                        updatePortSelectedLayoutId(this.requireContext(), "2")
-                    }
-                R.id.option_port_left_hand ->
-                    if (checked) {
-                        updatePortSelectedLayoutId(this.requireContext(), "3")
-                        Log.d(tag, "3って送られてるよ！！")
-                    }
             }
         }
     }
 
+    //縦向きのレイアウトのラジオボタンの動作でDataStoreのvalueを更新するメソッド
     private suspend fun onPortRadioButtonClicked(view: View) {
         if (view is RadioButton) {
             val checked = view.isChecked
@@ -125,7 +103,6 @@ class SettingFragment : Fragment() {
                 R.id.option_port_left_hand ->
                     if (checked) {
                         updatePortSelectedLayoutId(this.requireContext(), "3")
-                        Log.d(tag, "3って送られてるよ！！")
                     }
             }
         }
