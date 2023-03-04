@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".SettingFragment">
 
     <TextView
         android:id="@+id/land_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/landscape_text"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -19,7 +19,7 @@
     <RadioGroup
         android:id="@+id/land_radio_group"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:checkedButton="@+id/option_land_youtube_layout"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/port_text"
@@ -29,26 +29,29 @@
             android:id="@+id/option_land_youtube_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/youtube_layout" />
+            android:text="@string/youtube_layout"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <RadioButton
             android:id="@+id/option_land_right_hand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/right_handed" />
+            android:text="@string/right_handed"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <RadioButton
             android:id="@+id/option_land_left_hand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/left_handed" />
+            android:text="@string/left_handed"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
     </RadioGroup>
 
     <TextView
         android:id="@+id/port_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/portrait_text"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -56,12 +59,11 @@
 
     <RadioGroup
         android:id="@+id/port_radio_group"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:checkedButton="@+id/option_port_youtube_layout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/port_text">
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/port_text">
 
         <RadioButton
             android:id="@+id/option_port_youtube_layout"
@@ -81,4 +83,13 @@
             android:layout_height="wrap_content"
             android:text="@string/left_handed" />
     </RadioGroup>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/navigation_bar_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
