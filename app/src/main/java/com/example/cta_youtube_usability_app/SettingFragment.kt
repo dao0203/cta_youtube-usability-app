@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.cta_youtube_usability_app.databinding.FragmentSettingBinding
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -44,6 +46,11 @@ class SettingFragment : Fragment() {
                 withContext(Dispatchers.IO){
                     onRandRadioButtonClicked(radioButton)
                 }
+                //Logを使用してRandのDataStoreに送れているかを確認：成功したが、ログが公差的に増加している
+                val textFlow: Flow<String> = context?.dataStore?.data!!.map { preferences->
+                    preferences[LAND_SELECTED_LAYOUT_ID_KEY] ?: "0"
+                }
+                textFlow.collect{ Log.d("dataStore","land_selected_layout_id= $it")}
             }
         }
 
@@ -55,6 +62,11 @@ class SettingFragment : Fragment() {
                 withContext(Dispatchers.IO){
                     onPortRadioButtonClicked(radioButton)
                 }
+                //Logを使用してDataStoreに送れているかを確認：成功したが、ログが公差的に増加している
+                val textFlow: Flow<String> = context?.dataStore?.data!!.map { preferences->
+                    preferences[PORT_SELECTED_LAYOUT_ID_KEY] ?: "0"
+                }
+                textFlow.collect{ Log.d("dataStore","port_selected_layout_id= $it")}
             }
         }
     }
