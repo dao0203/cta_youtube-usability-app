@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.example.cta_youtube_usability_app.SettingFragment"
+        android:name="com.example.cta_youtube_usability_app.setting.view.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
     <fragment android:id="@+id/placeholder" >
