@@ -6,4 +6,6 @@
     <string name="right_handed">右利き</string>
     <string name="left_handed">左利き</string>
     <string name="youtube_layout">YouTubeレイアウト</string>
+    <string name="title_layout_setting">レイアウト設定</string>
+    <string name="title_movie">動画</string>
 </resources>
