@@ -16,8 +16,8 @@ class MainActivity : AppCompatActivity() {
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //アプリケーション起動時にDataStoreに初期値を設定（youtube_layout）
-        lifecycleScope.launch{
-            withContext(Dispatchers.IO){
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
                 dataStore.edit { layout ->
                     layout[LAND_SELECTED_LAYOUT_ID_KEY] = "youtube_layout"
                     layout[PORT_SELECTED_LAYOUT_ID_KEY] = "youtube_layout"

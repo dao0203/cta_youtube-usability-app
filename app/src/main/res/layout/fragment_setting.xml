@@ -82,6 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/left_handed" />
+
     </RadioGroup>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -92,4 +93,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/navigation_bar_menu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
