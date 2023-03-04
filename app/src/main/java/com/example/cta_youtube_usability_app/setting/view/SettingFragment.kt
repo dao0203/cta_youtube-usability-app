@@ -76,15 +76,15 @@ class SettingFragment : Fragment() {
                 //横向きのレイアウト
                 R.id.option_land_youtube_layout ->
                     if (checked) {
-                        updateLandSelectedLayoutId(this.requireContext(), "1")
+                        updateLandSelectedLayoutId(this.requireContext(), "youtube_layout")
                     }
                 R.id.option_land_right_hand ->
                     if (checked) {
-                        updateLandSelectedLayoutId(this.requireContext(), "2")
+                        updateLandSelectedLayoutId(this.requireContext(), "right_hand_layout")
                     }
                 R.id.option_land_left_hand ->
                     if (checked) {
-                        updateLandSelectedLayoutId(this.requireContext(), "3")
+                        updateLandSelectedLayoutId(this.requireContext(), "left_hand_layout")
                     }
             }
         }
@@ -98,15 +98,15 @@ class SettingFragment : Fragment() {
             when (view.getId()) {
                 R.id.option_port_youtube_layout ->
                     if (checked) {
-                        updatePortSelectedLayoutId(this.requireContext(), "1")
+                        updatePortSelectedLayoutId(this.requireContext(), "youtube_layout")
                     }
                 R.id.option_port_right_hand ->
                     if (checked) {
-                        updatePortSelectedLayoutId(this.requireContext(), "2")
+                        updatePortSelectedLayoutId(this.requireContext(), "right_hand_layout")
                     }
                 R.id.option_port_left_hand ->
                     if (checked) {
-                        updatePortSelectedLayoutId(this.requireContext(), "3")
+                        updatePortSelectedLayoutId(this.requireContext(), "left_hand_layout")
                     }
             }
         }
