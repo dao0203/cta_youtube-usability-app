@@ -7,7 +7,7 @@
     tools:context=".setting.view.SettingFragment">
 
     <TextView
-        android:id="@+id/land_text"
+        android:id="@+id/landscape_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/landscape_text"
@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         android:checkedButton="@+id/option_land_youtube_layout"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/port_text"
-        app:layout_constraintTop_toBottomOf="@id/land_text">
+        app:layout_constraintBottom_toTopOf="@id/portrait_text"
+        app:layout_constraintTop_toBottomOf="@id/landscape_text">
 
         <RadioButton
             android:id="@+id/option_land_youtube_layout"
@@ -49,7 +49,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/port_text"
+        android:id="@+id/portrait_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/portrait_text"
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:checkedButton="@+id/option_port_youtube_layout"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/port_text">
+        app:layout_constraintTop_toBottomOf="@+id/portrait_text">
 
         <RadioButton
             android:id="@+id/option_port_youtube_layout"
