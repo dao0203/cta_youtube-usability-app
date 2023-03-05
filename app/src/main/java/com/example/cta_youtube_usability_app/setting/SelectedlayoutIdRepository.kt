@@ -1,4 +1,4 @@
-package com.example.cta_youtube_usability_app
+package com.example.cta_youtube_usability_app.setting
 
 import android.content.Context
 import androidx.annotation.WorkerThread
@@ -7,8 +7,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.cta_youtube_usability_app.setting.LandSelectedLayoutId
-import com.example.cta_youtube_usability_app.setting.PortSelectedLayoutId
 import kotlinx.coroutines.flow.first
 
 //DataStoreをシングルトンとして扱えるようにする
