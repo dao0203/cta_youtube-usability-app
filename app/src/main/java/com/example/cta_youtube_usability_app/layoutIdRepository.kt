@@ -5,10 +5,16 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.flow.first
 
 //DataStoreをシングルトンとして扱えるようにする
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "layout")
 
-val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "layout")
+//シングルトンとして扱えるようにするため、拡張関数を引数として持ってくる
+class LayoutIdRepository(private val context: Context){
+
+    //dataStoreのデータのやり取りを行うために宣言
+    private val dataStore = context.dataStore
 
 //横と縦のレイアウトIDを格納するKeyを宣言
 val LAND_SELECTED_LAYOUT_ID_KEY = stringPreferencesKey("land_selected_layout_id")
