@@ -53,7 +53,7 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
     }
 
     //縦レイアウトID updateメソッド
-    fun updatePortLandSelectedLayoutId(portSelectedLayoutId: PortSelectedLayoutId) {
+    fun updatePortSelectedLayoutId(portSelectedLayoutId: PortSelectedLayoutId) {
         viewModelScope.launch {
             try {
                 selectedLayoutIdRepository.updatePortSelectedLayoutId(portSelectedLayoutId)
