@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioButton
 import androidx.datastore.preferences.core.edit
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.cta_youtube_usability_app.LAND_SELECTED_LAYOUT_ID_KEY
 import com.example.cta_youtube_usability_app.PORT_SELECTED_LAYOUT_ID_KEY
-import com.example.cta_youtube_usability_app.R
 import com.example.cta_youtube_usability_app.dataStore
 import com.example.cta_youtube_usability_app.databinding.FragmentSettingBinding
 import kotlinx.coroutines.Dispatchers
@@ -41,22 +39,20 @@ class SettingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         //横向きレイアウトのラジオグループの動作
         binding.landRadioGroup.setOnCheckedChangeListener { _, checkedId ->
-            val radioButton = binding.root.findViewById<RadioButton>(checkedId)
             lifecycleScope.launch {
                 //データの更新
                 withContext(Dispatchers.IO) {
-                    onLandRadioButtonClicked(radioButton)
+                    onLandRadioButtonClicked(checkedId)
                 }
             }
         }
 
         //縦向きレイアウトのラジオグループの動作
         binding.portRadioGroup.setOnCheckedChangeListener { _, checkedId ->
-            val radioButton = binding.root.findViewById<RadioButton>(checkedId)
             lifecycleScope.launch {
                 //データの更新
                 withContext(Dispatchers.IO) {
-                    onPortRadioButtonClicked(radioButton)
+                    onPortRadioButtonClicked(checkedId)
                 }
             }
         }
@@ -68,46 +64,26 @@ class SettingFragment : Fragment() {
     }
 
     //横向きレイアウトのラジオボタンの動作でDataStoreのvalueを更新するメソッド
-    private suspend fun onLandRadioButtonClicked(view: View) {
-        if (view is RadioButton) {
-            val checked = view.isChecked
-            when (view.getId()) {
-                //横向きのレイアウト
-                R.id.option_land_youtube_layout ->
-                    if (checked) {
-                        updateLandSelectedLayoutId(this.requireContext(), "youtube_layout")
-                    }
-                R.id.option_land_right_hand ->
-                    if (checked) {
-                        updateLandSelectedLayoutId(this.requireContext(), "right_hand_layout")
-                    }
-                R.id.option_land_left_hand ->
-                    if (checked) {
-                        updateLandSelectedLayoutId(this.requireContext(), "left_hand_layout")
-                    }
-            }
+    private suspend fun onLandRadioButtonClicked(buttonId: Int) {
+        when (buttonId) {
+            binding.optionLandYoutubeLayout.id ->
+                updateLandSelectedLayoutId(this.requireContext(), "youtube_layout")
+            binding.optionLandRightHand.id ->
+                updateLandSelectedLayoutId(this.requireContext(), "right_hand_layout")
+            binding.optionLandLeftHand.id ->
+                updateLandSelectedLayoutId(this.requireContext(), "left_hand_layout")
         }
     }
 
     //縦向きのレイアウトのラジオボタンの動作でDataStoreのvalueを更新するメソッド
-    private suspend fun onPortRadioButtonClicked(view: View) {
-        if (view is RadioButton) {
-            val checked = view.isChecked
-
-            when (view.getId()) {
-                R.id.option_port_youtube_layout ->
-                    if (checked) {
-                        updatePortSelectedLayoutId(this.requireContext(), "youtube_layout")
-                    }
-                R.id.option_port_right_hand ->
-                    if (checked) {
-                        updatePortSelectedLayoutId(this.requireContext(), "right_hand_layout")
-                    }
-                R.id.option_port_left_hand ->
-                    if (checked) {
-                        updatePortSelectedLayoutId(this.requireContext(), "left_hand_layout")
-                    }
-            }
+    private suspend fun onPortRadioButtonClicked(radioButtonId: Int) {
+        when (radioButtonId) {
+            binding.optionPortYoutubeLayout.id ->
+                updatePortSelectedLayoutId(this.requireContext(), "youtube_layout")
+            binding.optionPortRightHand.id ->
+                updatePortSelectedLayoutId(this.requireContext(), "right_hand_layout")
+            binding.optionPortLeftHand.id ->
+                updatePortSelectedLayoutId(this.requireContext(), "left_hand_layout")
         }
     }
 
