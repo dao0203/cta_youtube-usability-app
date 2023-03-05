@@ -23,7 +23,7 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
             }
         }.stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(),//値は一つしかないため、ずっと監視させないようにする
+            started = SharingStarted.Eagerly,//値は一つしかないため、ずっと監視させないようにする
             initialValue = null
         )
 
@@ -37,7 +37,7 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
             }
         }.stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(),//値は一つしかないため、ずっと監視させないようにする
+            started = SharingStarted.Eagerly,//値は一つしかないため、ずっと監視させないようにする
             initialValue = null
         )
 
