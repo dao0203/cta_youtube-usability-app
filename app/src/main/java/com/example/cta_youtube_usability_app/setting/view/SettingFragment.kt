@@ -1,6 +1,7 @@
 package com.example.cta_youtube_usability_app.setting.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +42,11 @@ class SettingFragment : Fragment() {
         //縦向きレイアウトのラジオグループの動作
         binding.portRadioGroup.setOnCheckedChangeListener { _, checkedId ->
             updatePortSelectedLayoutId(checkedId)
+            val landSelectedLayoutId = selectedLayoutIdViewModel.landSelectedLayoutId.value?.landSelectedLayoutId
+            val portSelectedLayoutId = selectedLayoutIdViewModel.portSelectedLayoutId.value?.portSelectedLayoutId
+            Log.d("リスナー後","landId:$landSelectedLayoutId portId:$portSelectedLayoutId")
         }
+
     }
 
     override fun onDestroyView() {

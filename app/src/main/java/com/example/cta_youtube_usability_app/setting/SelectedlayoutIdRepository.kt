@@ -53,6 +53,7 @@ class SelectedLayoutIdRepository(private val context: Context) {
         withContext(Dispatchers.IO) {
             dataStore.edit { layout ->
                 layout[PORT_SELECTED_LAYOUT_ID_KEY] = portSelectedLayoutId.portSelectedLayoutId
+                Log.d("保存直後のDataStoreの縦レイアウトID","${layout[PORT_SELECTED_LAYOUT_ID_KEY]}")
             }
         }
     }
