@@ -49,9 +49,7 @@ dependencies {
 
     //Preferences DataStoreの依存関係を追加
     implementation "androidx.datastore:datastore-preferences:1.0.0"
-    /**
-     * Roomの依存関係を追加
-     */
+    //ルームの依存関係を追加
     implementation("androidx.room:room-runtime:2.5.0")
     annotationProcessor("androidx.room:room-compiler:2.5.0")
     // To use Kotlin Symbol Processing (KSP)
