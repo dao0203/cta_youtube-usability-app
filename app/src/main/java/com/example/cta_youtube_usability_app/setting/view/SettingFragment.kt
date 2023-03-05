@@ -46,7 +46,7 @@ class SettingFragment : Fragment() {
             lifecycleScope.launch {
                 //データの更新
                 withContext(Dispatchers.IO) {
-                    onRandRadioButtonClicked(radioButton)
+                    onLandRadioButtonClicked(radioButton)
                 }
             }
         }
@@ -69,7 +69,7 @@ class SettingFragment : Fragment() {
     }
 
     //横向きレイアウトのラジオボタンの動作でDataStoreのvalueを更新するメソッド
-    private suspend fun onRandRadioButtonClicked(view: View) {
+    private suspend fun onLandRadioButtonClicked(view: View) {
         if (view is RadioButton) {
             val checked = view.isChecked
             when (view.getId()) {
