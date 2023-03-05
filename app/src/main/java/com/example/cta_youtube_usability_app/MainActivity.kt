@@ -18,9 +18,14 @@ class MainActivity : AppCompatActivity() {
         //アプリケーション起動時にDataStoreに初期値を設定（youtube_layout）
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
+                //null（初期化されていない）の場合はyoutube_layoutIDを代入する
                 dataStore.edit { layout ->
-                    layout[LAND_SELECTED_LAYOUT_ID_KEY] = "youtube_layout"
-                    layout[PORT_SELECTED_LAYOUT_ID_KEY] = "youtube_layout"
+                    if(layout[LAND_SELECTED_LAYOUT_ID_KEY]==null){
+                        layout[LAND_SELECTED_LAYOUT_ID_KEY] = "youtube_layout"
+                    }
+                    if (layout[PORT_SELECTED_LAYOUT_ID_KEY]==null){
+                        layout[PORT_SELECTED_LAYOUT_ID_KEY] = "youtube_layout"
+                    }
                 }
             }
         }
