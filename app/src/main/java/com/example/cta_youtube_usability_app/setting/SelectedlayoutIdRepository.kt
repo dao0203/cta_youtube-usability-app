@@ -1,6 +1,7 @@
 package com.example.cta_youtube_usability_app.setting
 
 import android.content.Context
+import android.util.Log
 import androidx.annotation.WorkerThread
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

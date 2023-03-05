@@ -1,14 +1,17 @@
 package com.example.cta_youtube_usability_app.setting.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.cta_youtube_usability_app.databinding.FragmentSettingBinding
-import com.example.cta_youtube_usability_app.setting.*
+import com.example.cta_youtube_usability_app.setting.LandSelectedLayoutId
+import com.example.cta_youtube_usability_app.setting.PortSelectedLayoutId
+import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdRepository
+import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdViewModel
+import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdViewModelFactory
 
 
 class SettingFragment : Fragment() {
@@ -33,10 +36,6 @@ class SettingFragment : Fragment() {
         //横向きレイアウトのラジオグループの動作
         binding.landRadioGroup.setOnCheckedChangeListener { _, checkedId ->
             updateRandSelectedLayoutId(checkedId)
-            val landLayoutId: LandSelectedLayoutId? =
-                selectedLayoutIdViewModel.landSelectedLayoutId.value
-            val selectedLayoutId: String? = landLayoutId?.landSelectedLayoutId
-            Log.d("landSelectedLayoutId", "$selectedLayoutId")
         }
 
         //縦向きレイアウトのラジオグループの動作
@@ -57,12 +56,9 @@ class SettingFragment : Fragment() {
                 selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayoutId("youtube_layout"))
             binding.optionLandRightHand.id ->
                 selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayoutId("right_hand_layout"))
-
             binding.optionLandLeftHand.id ->
                 selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayoutId("left_hand_layout"))
         }
-        val id = selectedLayoutIdViewModel.landSelectedLayoutId.value?.landSelectedLayoutId
-        Log.d("update", "updateRandSelectedLayoutId: $id")
     }
 
     //縦向きのレイアウトのラジオボタンの動作でDataStoreのvalueを更新するメソッド
