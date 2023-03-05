@@ -24,13 +24,15 @@ class SelectedLayoutIdRepository(private val context: Context) {
 
     //横レイアウトID GETメソッド（nullだったら初期値はYouTubeレイアウトID）
     @WorkerThread
-    suspend fun getLandSelectedLayoutId(): String =
+    suspend fun getLandSelectedLayoutId(): LandSelectedLayoutId = LandSelectedLayoutId(
         dataStore.data.first()[LAND_SELECTED_LAYOUT_ID_KEY] ?: "youtube_layout"
+    )
 
     //縦レイアウトID GETメソッド（nullだったら初期値はYouTubeレイアウトID）
     @WorkerThread
-    suspend fun getPortSelectedLayoutId(): String =
+    suspend fun getPortSelectedLayoutId(): PortSelectedLayoutId = PortSelectedLayoutId(
         dataStore.data.first()[PORT_SELECTED_LAYOUT_ID_KEY] ?: "youtube_layout"
+    )
 
     //横レイアウトID updateメソッド
     @WorkerThread
