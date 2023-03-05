@@ -7,7 +7,9 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withContext
 
 //DataStoreをシングルトンとして扱えるようにする
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "layout")
@@ -37,16 +39,20 @@ class SelectedLayoutIdRepository(private val context: Context) {
     //横レイアウトID updateメソッド
     @WorkerThread
     suspend fun updateLandSelectedLayoutId(landLayoutId: LandSelectedLayoutId) {
-        dataStore.edit { layout ->
-            layout[LAND_SELECTED_LAYOUT_ID_KEY] = landLayoutId.landSelectedLayoutId
+        withContext(Dispatchers.IO) {
+            dataStore.edit { layout ->
+                layout[LAND_SELECTED_LAYOUT_ID_KEY] = landLayoutId.landSelectedLayoutId
+            }
         }
     }
 
     //縦レイアウトID updateメソッド
     @WorkerThread
     suspend fun updatePortSelectedLayoutId(portSelectedLayoutId: PortSelectedLayoutId) {
-        dataStore.edit { layout ->
-            layout[PORT_SELECTED_LAYOUT_ID_KEY] = portSelectedLayoutId.portSelectedLayoutId
+        withContext(Dispatchers.IO) {
+            dataStore.edit { layout ->
+                layout[PORT_SELECTED_LAYOUT_ID_KEY] = portSelectedLayoutId.portSelectedLayoutId
+            }
         }
     }
 }
