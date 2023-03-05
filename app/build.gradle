@@ -54,4 +54,58 @@ dependencies {
     testImplementation("androidx.room:room-testing:2.5.0")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+
+    //Media3の依存関係を追加
+    // For media playback using ExoPlayer
+    implementation("androidx.media3:media3-exoplayer:1.0.0-beta03")
+
+    // For DASH playback support with ExoPlayer
+    implementation("androidx.media3:media3-exoplayer-dash:1.0.0-beta03")
+    // For HLS playback support with ExoPlayer
+    implementation("androidx.media3:media3-exoplayer-hls:1.0.0-beta03")
+    // For RTSP playback support with ExoPlayer
+    implementation("androidx.media3:media3-exoplayer-rtsp:1.0.0-beta03")
+    // For ad insertion using the Interactive Media Ads SDK with ExoPlayer
+    implementation("androidx.media3:media3-exoplayer-ima:1.0.0-beta03")
+
+    // For loading data using the Cronet network stack
+    implementation("androidx.media3:media3-datasource-cronet:1.0.0-beta03")
+    // For loading data using the OkHttp network stack
+    implementation("androidx.media3:media3-datasource-okhttp:1.0.0-beta03")
+    // For loading data using librtmp
+    implementation("androidx.media3:media3-datasource-rtmp:1.0.0-beta03")
+
+    // For building media playback UIs
+    implementation("androidx.media3:media3-ui:1.0.0-beta03")
+    // For building media playback UIs for Android TV using the Jetpack Leanback library
+    implementation("androidx.media3:media3-ui-leanback:1.0.0-beta03")
+
+    // For exposing and controlling media sessions
+    implementation("androidx.media3:media3-session:1.0.0-beta03")
+
+    // For extracting data from media containers
+    implementation("androidx.media3:media3-extractor:1.0.0-beta03")
+
+    // For integrating with Cast
+    implementation("androidx.media3:media3-cast:1.0.0-beta03")
+
+    // For scheduling background operations using Jetpack Work's WorkManager with ExoPlayer
+    implementation("androidx.media3:media3-exoplayer-workmanager:1.0.0-beta03")
+
+    // For transforming media files
+    implementation("androidx.media3:media3-transformer:1.0.0-beta03")
+
+    // Utilities for testing media components (including ExoPlayer components)
+    implementation("androidx.media3:media3-test-utils:1.0.0-beta03")
+    // Utilities for testing media components (including ExoPlayer components) via Robolectric
+    implementation("androidx.media3:media3-test-utils-robolectric:1.0.0-beta03")
+
+    // Common functionality for media database components
+    implementation("androidx.media3:media3-database:1.0.0-beta03")
+    // Common functionality for media decoders
+    implementation("androidx.media3:media3-decoder:1.0.0-beta03")
+    // Common functionality for loading data
+    implementation("androidx.media3:media3-datasource:1.0.0-beta03")
+    // Common functionality used across multiple media libraries
+    implementation("androidx.media3:media3-common:1.0.0-beta03")
 }
