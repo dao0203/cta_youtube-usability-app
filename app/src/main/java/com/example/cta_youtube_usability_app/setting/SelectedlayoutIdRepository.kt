@@ -9,7 +9,8 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 //DataStoreをシングルトンとして扱えるようにする
@@ -25,17 +26,18 @@ class SelectedLayoutIdRepository(private val context: Context) {
     private val LAND_SELECTED_LAYOUT_ID_KEY = stringPreferencesKey("land_selected_layout_id")
     private val PORT_SELECTED_LAYOUT_ID_KEY = stringPreferencesKey("port_selected_layout_id")
 
-    //横レイアウトID GETメソッド（nullだったら初期値はYouTubeレイアウトID）
-    @WorkerThread
-    suspend fun getLandSelectedLayoutId(): LandSelectedLayoutId = LandSelectedLayoutId(
-        dataStore.data.first()[LAND_SELECTED_LAYOUT_ID_KEY] ?: "youtube_layout"
-    )
+    //リアルタイムで値を取得するようにFlow型で取得するようにした
+    // 横レイアウトIDをリアルタイムで受け取る変数
+    val landSelectedLayoutIdFlow: Flow<LandSelectedLayoutId> = dataStore.data
+        .map { value: Preferences ->
+            LandSelectedLayoutId(value[LAND_SELECTED_LAYOUT_ID_KEY] ?: "youtube_layout")
+        }
 
-    //縦レイアウトID GETメソッド（nullだったら初期値はYouTubeレイアウトID）
-    @WorkerThread
-    suspend fun getPortSelectedLayoutId(): PortSelectedLayoutId = PortSelectedLayoutId(
-        dataStore.data.first()[PORT_SELECTED_LAYOUT_ID_KEY] ?: "youtube_layout"
-    )
+    // 縦レイアウトIDをリアルタイムで受け取る変数
+    val portSelectedLayoutId: Flow<PortSelectedLayoutId> = dataStore.data
+        .map { value: Preferences ->
+            PortSelectedLayoutId(value[PORT_SELECTED_LAYOUT_ID_KEY] ?: "youtube_layout")
+        }
 
     //横レイアウトID updateメソッド
     @WorkerThread
@@ -53,7 +55,7 @@ class SelectedLayoutIdRepository(private val context: Context) {
         withContext(Dispatchers.IO) {
             dataStore.edit { layout ->
                 layout[PORT_SELECTED_LAYOUT_ID_KEY] = portSelectedLayoutId.portSelectedLayoutId
-                Log.d("保存直後のDataStoreの縦レイアウトID","${layout[PORT_SELECTED_LAYOUT_ID_KEY]}")
+                Log.d("保存直後のDataStoreの縦レイアウトID", "${layout[PORT_SELECTED_LAYOUT_ID_KEY]}")
             }
         }
     }

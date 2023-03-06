@@ -41,10 +41,11 @@ class SettingFragment : Fragment() {
 
         //縦向きレイアウトのラジオグループの動作
         binding.portRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            val beforePortSelectedLayoutId = selectedLayoutIdViewModel.portSelectedLayoutId.value?.portSelectedLayoutId
+            Log.d("リスナー前","portId:$beforePortSelectedLayoutId")
             updatePortSelectedLayoutId(checkedId)
-            val landSelectedLayoutId = selectedLayoutIdViewModel.landSelectedLayoutId.value?.landSelectedLayoutId
-            val portSelectedLayoutId = selectedLayoutIdViewModel.portSelectedLayoutId.value?.portSelectedLayoutId
-            Log.d("リスナー後","landId:$landSelectedLayoutId portId:$portSelectedLayoutId")
+            val afterPortSelectedLayoutId = selectedLayoutIdViewModel.portSelectedLayoutId.value?.portSelectedLayoutId
+            Log.d("リスナー後","portId:$afterPortSelectedLayoutId")
         }
 
     }
