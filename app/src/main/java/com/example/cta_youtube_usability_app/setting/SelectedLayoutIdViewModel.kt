@@ -12,7 +12,8 @@ import kotlinx.coroutines.launch
 class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: SelectedLayoutIdRepository) :
     ViewModel() {
 
-    // TODO SealedClassの実装
+    private val _settingsUiState = MutableStateFlow<SettingUiState>(SettingUiState.Loading)
+    val settingsUiState: StateFlow<SettingUiState> = _settingsUiState
 
     //横レイアウトIDの取得変数
     val landSelectedLayoutId: StateFlow<LandSelectedLayoutId> =
@@ -63,4 +64,14 @@ class SelectedLayoutIdViewModelFactory(private val selectedLayoutIdRepository: S
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
+}
+
+sealed class SettingUiState {
+    object Loading : SettingUiState()
+    data class Success(
+        val landSelectedLayoutId: StateFlow<LandSelectedLayoutId>,
+        val portSelectedLayoutId: StateFlow<PortSelectedLayoutId?>
+    ) : SettingUiState()
+
+    data class Error(val e: Exception) : SettingUiState()
 }
