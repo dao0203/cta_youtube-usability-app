@@ -15,11 +15,11 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
     // TODO SealedClassの実装
 
     //横レイアウトIDの取得変数
-    val landSelectedLayoutId: StateFlow<LandSelectedLayoutId?> =
+    val landSelectedLayoutId: StateFlow<LandSelectedLayoutId> =
         selectedLayoutIdRepository.landSelectedLayoutIdFlow.stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,//値は一つしかないため、ずっと監視させないようにする
-            initialValue = null
+        initialValue = LandSelectedLayoutId("youtube_layout")//初期値はYouTubeレイアウト
         )
 
     //縦レイアウトIDの取得変数
@@ -27,7 +27,7 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
         selectedLayoutIdRepository.portSelectedLayoutId.stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,//値は一つしかないため、ずっと監視させないようにする
-            initialValue = null
+            initialValue = PortSelectedLayoutId("youtube_layout")//初期値はYouTubeレイアウト
         )
 
     //横レイアウトID updateメソッド
