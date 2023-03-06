@@ -15,12 +15,18 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/land_radio_group"
         app:layout_constraintTop_toTopOf="parent" />
+    <ProgressBar
+        android:id="@+id/landscape_progress"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/landscape_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <RadioGroup
         android:id="@+id/land_radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checkedButton="@+id/option_land_youtube_layout"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/portrait_text"
         app:layout_constraintTop_toBottomOf="@id/landscape_text">
@@ -57,11 +63,18 @@
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/land_radio_group" />
 
+    <ProgressBar
+        android:id="@+id/portrait_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/portrait_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <RadioGroup
         android:id="@+id/port_radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:checkedButton="@+id/option_port_youtube_layout"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/portrait_text">
 
