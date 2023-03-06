@@ -1,18 +1,21 @@
 package com.example.cta_youtube_usability_app.setting.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.cta_youtube_usability_app.databinding.FragmentSettingBinding
 import com.example.cta_youtube_usability_app.setting.LandSelectedLayoutId
 import com.example.cta_youtube_usability_app.setting.PortSelectedLayoutId
 import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdRepository
 import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdViewModel
 import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdViewModelFactory
+import com.example.cta_youtube_usability_app.setting.SettingUiState
+import kotlinx.coroutines.flow.collectLatest
 
 
 class SettingFragment : Fragment() {
@@ -34,6 +37,47 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launchWhenStarted {
+            //TODO: initialValueがラジオボタンのチェックに関係しているので、ここをDataStore自体のデータで使えるようにしたい
+            //      最低限、ここはデフォルトでYouTubeレイアウトならこのままで大丈夫
+            selectedLayoutIdViewModel.getEachSelectedLayoutId()
+            selectedLayoutIdViewModel.settingsUiState.collectLatest { value ->
+                when (value) {
+                    is SettingUiState.Loading -> {//ローディング中
+                        //ラジオグループを不可視化
+                        binding.landRadioGroup.isVisible = false
+                        binding.portRadioGroup.isVisible = false
+                        //プログレスバーを可視化
+                        binding.landscapeProgress.isVisible = true
+                        binding.portraitProgress.isVisible = true
+                    }
+                    is SettingUiState.Success -> {//データ取得成功時
+                        //ラジオグループを可視化
+                        binding.landRadioGroup.isVisible = true
+                        binding.portRadioGroup.isVisible = true
+                        //プログレスバーを不可視化
+                        binding.landscapeProgress.isVisible = false
+                        binding.portraitProgress.isVisible = false
+                        //横レイアウトの指定されたラジオボタンをチェック
+                        when (value.landSelectedLayoutId.value.landSelectedLayoutId) {
+                            "youtube_layout" -> binding.optionLandYoutubeLayout.isChecked = true
+                            "right_hand_layout" -> binding.optionLandRightHand.isChecked = true
+                            "left_hand_layout" -> binding.optionLandLeftHand.isChecked = true
+                        }
+                        //縦レイアウトの指定されたラジオボタンがチェック
+                        when (value.portSelectedLayoutId.value?.portSelectedLayoutId) {
+                            "youtube_layout" -> binding.optionPortYoutubeLayout.isChecked = true
+                            "right_hand_layout" -> binding.optionPortRightHand.isChecked = true
+                            "left_hand_layout" -> binding.optionPortLeftHand.isChecked = true
+                        }
+                    }
+                    is SettingUiState.Error -> {
+                        binding.landRadioGroup.isVisible = false
+                        binding.portRadioGroup.isVisible = false
+                    }
+                }
+            }
+        }
         //横向きレイアウトのラジオグループの動作
         binding.landRadioGroup.setOnCheckedChangeListener { _, checkedId ->
             updateRandSelectedLayoutId(checkedId)
@@ -41,11 +85,7 @@ class SettingFragment : Fragment() {
 
         //縦向きレイアウトのラジオグループの動作
         binding.portRadioGroup.setOnCheckedChangeListener { _, checkedId ->
-            val beforePortSelectedLayoutId = selectedLayoutIdViewModel.portSelectedLayoutId.value?.portSelectedLayoutId
-            Log.d("リスナー前","portId:$beforePortSelectedLayoutId")
             updatePortSelectedLayoutId(checkedId)
-            val afterPortSelectedLayoutId = selectedLayoutIdViewModel.portSelectedLayoutId.value?.portSelectedLayoutId
-            Log.d("リスナー後","portId:$afterPortSelectedLayoutId")
         }
 
     }
