@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -15,16 +16,30 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
     private val _settingsUiState = MutableStateFlow<SettingUiState>(SettingUiState.Loading)
     val settingsUiState: StateFlow<SettingUiState> = _settingsUiState
 
-    //横レイアウトIDの取得変数
-    val landSelectedLayoutId: StateFlow<LandSelectedLayoutId> =
+    //Ui状態の更新とそれぞれのレイアウトID取得メソッド
+    fun getEachSelectedLayoutId() {
+        viewModelScope.launch {
+            try {
+                val landSelectedLayoutId = getLandSelectedLayoutId()
+                val portSelectedLayoutId = getPortSelectedLayoutId()
+                _settingsUiState.value =
+                    SettingUiState.Success(landSelectedLayoutId, portSelectedLayoutId)
+            } catch (e: Exception) {
+                _settingsUiState.value = SettingUiState.Error(e)
+            }
+        }
+    }
+
+    //横レイアウトIDの取得メソッド
+    private fun getLandSelectedLayoutId(): StateFlow<LandSelectedLayoutId> =
         selectedLayoutIdRepository.landSelectedLayoutIdFlow.stateIn(
             scope = viewModelScope,
-            started = SharingStarted.Eagerly,//値は一つしかないため、ずっと監視させないようにする
+            started = SharingStarted.Eagerly,
         initialValue = LandSelectedLayoutId("youtube_layout")//初期値はYouTubeレイアウト
         )
 
-    //縦レイアウトIDの取得変数
-    val portSelectedLayoutId: StateFlow<PortSelectedLayoutId?> =
+    //縦レイアウトIDの取得メソッド
+    private fun getPortSelectedLayoutId(): StateFlow<PortSelectedLayoutId?> =
         selectedLayoutIdRepository.portSelectedLayoutId.stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,//値は一つしかないため、ずっと監視させないようにする
