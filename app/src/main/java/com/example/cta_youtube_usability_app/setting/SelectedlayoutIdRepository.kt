@@ -21,9 +21,12 @@ class SelectedLayoutIdRepository(context: Context) {
     //dataStoreのデータのやり取りを行うために宣言
     private val dataStore = context.dataStore
 
-    //横と縦のレイアウトIDを格納するKeyを宣言
-    private val LAND_SELECTED_LAYOUT_ID_KEY = stringPreferencesKey("land_selected_layout_id")
-    private val PORT_SELECTED_LAYOUT_ID_KEY = stringPreferencesKey("port_selected_layout_id")
+    companion object{
+        //横と縦のレイアウトIDを格納するKeyを宣言
+        private val LAND_SELECTED_LAYOUT_ID_KEY = stringPreferencesKey("land_selected_layout_id")
+        private val PORT_SELECTED_LAYOUT_ID_KEY = stringPreferencesKey("port_selected_layout_id")
+    }
+
 
     //リアルタイムで値を取得するようにFlow型で取得するようにした
     // 横レイアウトIDをリアルタイムで受け取る変数
