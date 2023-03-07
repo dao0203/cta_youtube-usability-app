@@ -38,8 +38,6 @@ class SettingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
-            //TODO: initialValueがラジオボタンのチェックに関係しているので、ここをDataStore自体のデータで使えるようにしたい
-            //      最低限、ここはデフォルトでYouTubeレイアウトならこのままで大丈夫
             selectedLayoutIdViewModel.getEachSelectedLayoutId()
             selectedLayoutIdViewModel.settingsUiState.collectLatest { value ->
                 when (value) {
