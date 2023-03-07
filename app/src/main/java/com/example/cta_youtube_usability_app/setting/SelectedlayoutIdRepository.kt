@@ -45,6 +45,7 @@ class SelectedLayoutIdRepository(private val context: Context) {
         withContext(Dispatchers.IO) {
             dataStore.edit { layout ->
                 layout[LAND_SELECTED_LAYOUT_ID_KEY] = landLayoutId.landSelectedLayoutId
+                Log.d("保存直後のDataStoreの横レイアウトID", "${layout[LAND_SELECTED_LAYOUT_ID_KEY]}")
             }
         }
     }
@@ -55,7 +56,7 @@ class SelectedLayoutIdRepository(private val context: Context) {
         withContext(Dispatchers.IO) {
             dataStore.edit { layout ->
                 layout[PORT_SELECTED_LAYOUT_ID_KEY] = portSelectedLayoutId.portSelectedLayoutId
-                Log.d("保存直後のDataStoreの縦レイアウトID", "${layout[PORT_SELECTED_LAYOUT_ID_KEY]}")
+                Log.d("保存直後のDataStoreの縦レイアウトID", "${layout[PORT_SELECTED_LAYOUT_ID_KEY]}・${layout[LAND_SELECTED_LAYOUT_ID_KEY]}")
             }
         }
     }

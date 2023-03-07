@@ -59,13 +59,13 @@ class SettingFragment : Fragment() {
                         binding.landscapeProgress.isVisible = false
                         binding.portraitProgress.isVisible = false
                         //横レイアウトの指定されたラジオボタンをチェック
-                        when (value.landSelectedLayoutId.value.landSelectedLayoutId) {
+                        when (value.landSelectedLayoutId.landSelectedLayoutId) {
                             "youtube_layout" -> binding.optionLandYoutubeLayout.isChecked = true
                             "right_hand_layout" -> binding.optionLandRightHand.isChecked = true
                             "left_hand_layout" -> binding.optionLandLeftHand.isChecked = true
                         }
                         //縦レイアウトの指定されたラジオボタンがチェック
-                        when (value.portSelectedLayoutId.value?.portSelectedLayoutId) {
+                        when (value.portSelectedLayoutId.portSelectedLayoutId) {
                             "youtube_layout" -> binding.optionPortYoutubeLayout.isChecked = true
                             "right_hand_layout" -> binding.optionPortRightHand.isChecked = true
                             "left_hand_layout" -> binding.optionPortLeftHand.isChecked = true

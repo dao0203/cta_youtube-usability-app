@@ -20,10 +20,16 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
     fun getEachSelectedLayoutId() {
         viewModelScope.launch {
             try {
-                val landSelectedLayoutId = getLandSelectedLayoutId()
-                val portSelectedLayoutId = getPortSelectedLayoutId()
-                _settingsUiState.value =
-                    SettingUiState.Success(landSelectedLayoutId, portSelectedLayoutId)
+                lateinit var landSelectedLayoutId: LandSelectedLayoutId
+                lateinit var portSelectedLayoutId: PortSelectedLayoutId
+                getLandSelectedLayoutId().collect { land ->
+                    landSelectedLayoutId = land
+                    getPortSelectedLayoutId().collect { port ->
+                        portSelectedLayoutId = port
+                        _settingsUiState.value =
+                            SettingUiState.Success(landSelectedLayoutId, portSelectedLayoutId)
+                    }
+                }
             } catch (e: Exception) {
                 _settingsUiState.value = SettingUiState.Error(e)
             }
@@ -35,11 +41,11 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
         selectedLayoutIdRepository.landSelectedLayoutIdFlow.stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,
-        initialValue = LandSelectedLayoutId("youtube_layout")//初期値はYouTubeレイアウト
+            initialValue = LandSelectedLayoutId("youtube_layout")//初期値はYouTubeレイアウト
         )
 
     //縦レイアウトIDの取得メソッド
-    private fun getPortSelectedLayoutId(): StateFlow<PortSelectedLayoutId?> =
+    private fun getPortSelectedLayoutId(): StateFlow<PortSelectedLayoutId> =
         selectedLayoutIdRepository.portSelectedLayoutId.stateIn(
             scope = viewModelScope,
             started = SharingStarted.Eagerly,//値は一つしかないため、ずっと監視させないようにする
@@ -84,8 +90,8 @@ class SelectedLayoutIdViewModelFactory(private val selectedLayoutIdRepository: S
 sealed class SettingUiState {
     object Loading : SettingUiState()
     data class Success(
-        val landSelectedLayoutId: StateFlow<LandSelectedLayoutId>,
-        val portSelectedLayoutId: StateFlow<PortSelectedLayoutId?>
+        val landSelectedLayoutId: LandSelectedLayoutId,
+        val portSelectedLayoutId: PortSelectedLayoutId
     ) : SettingUiState()
 
     data class Error(val e: Exception) : SettingUiState()
