@@ -5,9 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 
 class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: SelectedLayoutIdRepository) :
@@ -20,37 +19,19 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
     fun getEachSelectedLayoutId() {
         viewModelScope.launch {
             try {
-                lateinit var landSelectedLayoutId: LandSelectedLayoutId
-                lateinit var portSelectedLayoutId: PortSelectedLayoutId
-                getLandSelectedLayoutId().collect { land ->
-                    landSelectedLayoutId = land
-                    getPortSelectedLayoutId().collect { port ->
-                        portSelectedLayoutId = port
-                        _settingsUiState.value =
-                            SettingUiState.Success(landSelectedLayoutId, portSelectedLayoutId)
-                    }
+                val landSelectedLayoutIdFlow = selectedLayoutIdRepository.landSelectedLayoutIdFlow
+                val portSelectedLayoutIdFlow = selectedLayoutIdRepository.portSelectedLayoutId
+                landSelectedLayoutIdFlow.zip(portSelectedLayoutIdFlow) { landSelectedLayoutId: LandSelectedLayoutId, portSelectedLayoutId: PortSelectedLayoutId ->
+                    Pair(landSelectedLayoutId, portSelectedLayoutId)
+                }.collect {
+                    _settingsUiState.value =
+                        SettingUiState.Success(it.first, it.second)
                 }
             } catch (e: Exception) {
                 _settingsUiState.value = SettingUiState.Error(e)
             }
         }
     }
-
-    //横レイアウトIDの取得メソッド
-    private fun getLandSelectedLayoutId(): StateFlow<LandSelectedLayoutId> =
-        selectedLayoutIdRepository.landSelectedLayoutIdFlow.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.Eagerly,
-            initialValue = LandSelectedLayoutId("youtube_layout")//初期値はYouTubeレイアウト
-        )
-
-    //縦レイアウトIDの取得メソッド
-    private fun getPortSelectedLayoutId(): StateFlow<PortSelectedLayoutId> =
-        selectedLayoutIdRepository.portSelectedLayoutId.stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.Eagerly,//値は一つしかないため、ずっと監視させないようにする
-            initialValue = PortSelectedLayoutId("youtube_layout")//初期値はYouTubeレイアウト
-        )
 
     //横レイアウトID updateメソッド
     fun updateLandSelectedLayoutId(landSelectedLayoutId: LandSelectedLayoutId) {

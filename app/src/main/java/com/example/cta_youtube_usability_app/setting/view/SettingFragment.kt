@@ -17,7 +17,6 @@ import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdViewModelFa
 import com.example.cta_youtube_usability_app.setting.SettingUiState
 import kotlinx.coroutines.flow.collectLatest
 
-
 class SettingFragment : Fragment() {
 
     private var _binding: FragmentSettingBinding? = null
