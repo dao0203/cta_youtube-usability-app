@@ -30,13 +30,13 @@ class SelectedLayoutIdRepository(private val context: Context) {
     // 横レイアウトIDをリアルタイムで受け取る変数
     val landSelectedLayoutIdFlow: Flow<LandSelectedLayoutId> = dataStore.data
         .map { value: Preferences ->
-            LandSelectedLayoutId(value[LAND_SELECTED_LAYOUT_ID_KEY] ?: "youtube_layout")
+            LandSelectedLayoutId(value[LAND_SELECTED_LAYOUT_ID_KEY] ?: LayoutId.YOUTUBE.name)
         }
 
     // 縦レイアウトIDをリアルタイムで受け取る変数
     val portSelectedLayoutId: Flow<PortSelectedLayoutId> = dataStore.data
         .map { value: Preferences ->
-            PortSelectedLayoutId(value[PORT_SELECTED_LAYOUT_ID_KEY] ?: "youtube_layout")
+            PortSelectedLayoutId(value[PORT_SELECTED_LAYOUT_ID_KEY] ?: LayoutId.YOUTUBE.name)
         }
 
     //横レイアウトID updateメソッド

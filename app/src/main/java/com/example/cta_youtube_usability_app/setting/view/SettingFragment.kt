@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.cta_youtube_usability_app.databinding.FragmentSettingBinding
 import com.example.cta_youtube_usability_app.setting.LandSelectedLayoutId
+import com.example.cta_youtube_usability_app.setting.LayoutId
 import com.example.cta_youtube_usability_app.setting.PortSelectedLayoutId
 import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdRepository
 import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdViewModel
@@ -59,15 +60,17 @@ class SettingFragment : Fragment() {
                         binding.portraitProgress.isVisible = false
                         //横レイアウトの指定されたラジオボタンをチェック
                         when (value.landSelectedLayoutId.landSelectedLayoutId) {
-                            "youtube_layout" -> binding.optionLandYoutubeLayout.isChecked = true
-                            "right_hand_layout" -> binding.optionLandRightHand.isChecked = true
-                            "left_hand_layout" -> binding.optionLandLeftHand.isChecked = true
+                            LayoutId.YOUTUBE.name -> binding.optionLandYoutubeLayout.isChecked =
+                                true
+                            LayoutId.RIGHT.name -> binding.optionLandRightHand.isChecked = true
+                            LayoutId.LEFT.name -> binding.optionLandLeftHand.isChecked = true
                         }
                         //縦レイアウトの指定されたラジオボタンがチェック
                         when (value.portSelectedLayoutId.portSelectedLayoutId) {
-                            "youtube_layout" -> binding.optionPortYoutubeLayout.isChecked = true
-                            "right_hand_layout" -> binding.optionPortRightHand.isChecked = true
-                            "left_hand_layout" -> binding.optionPortLeftHand.isChecked = true
+                            LayoutId.YOUTUBE.name -> binding.optionPortYoutubeLayout.isChecked =
+                                true
+                            LayoutId.RIGHT.name -> binding.optionPortRightHand.isChecked = true
+                            LayoutId.LEFT.name -> binding.optionPortLeftHand.isChecked = true
                         }
                     }
                     is SettingUiState.Error -> {
@@ -98,11 +101,11 @@ class SettingFragment : Fragment() {
     private fun updateRandSelectedLayoutId(buttonId: Int) {
         when (buttonId) {
             binding.optionLandYoutubeLayout.id ->
-                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayoutId("youtube_layout"))
+                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayoutId(LayoutId.YOUTUBE.name))
             binding.optionLandRightHand.id ->
-                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayoutId("right_hand_layout"))
+                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayoutId(LayoutId.RIGHT.name))
             binding.optionLandLeftHand.id ->
-                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayoutId("left_hand_layout"))
+                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayoutId(LayoutId.LEFT.name))
         }
     }
 
@@ -110,11 +113,11 @@ class SettingFragment : Fragment() {
     private fun updatePortSelectedLayoutId(radioButtonId: Int) {
         when (radioButtonId) {
             binding.optionPortYoutubeLayout.id ->
-                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayoutId("youtube_layout"))
+                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayoutId(LayoutId.YOUTUBE.name))
             binding.optionPortRightHand.id ->
-                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayoutId("right_hand_layout"))
+                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayoutId(LayoutId.RIGHT.name))
             binding.optionPortLeftHand.id ->
-                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayoutId("left_hand_layout"))
+                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayoutId(LayoutId.LEFT.name))
         }
     }
 }
