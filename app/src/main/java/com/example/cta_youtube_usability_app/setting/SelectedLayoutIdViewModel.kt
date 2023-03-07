@@ -19,10 +19,10 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
     fun getEachSelectedLayoutId() {
         viewModelScope.launch {
             try {
-                val landSelectedLayoutIdFlow = selectedLayoutIdRepository.landSelectedLayoutIdFlow
-                val portSelectedLayoutIdFlow = selectedLayoutIdRepository.portSelectedLayoutId
-                landSelectedLayoutIdFlow.zip(portSelectedLayoutIdFlow) { landSelectedLayoutId: LandSelectedLayoutId, portSelectedLayoutId: PortSelectedLayoutId ->
-                    Pair(landSelectedLayoutId, portSelectedLayoutId)
+                val landSelectedLayoutIdFlow = selectedLayoutIdRepository.landSelectedLayoutFlow
+                val portSelectedLayoutIdFlow = selectedLayoutIdRepository.portSelectedLayout
+                landSelectedLayoutIdFlow.zip(portSelectedLayoutIdFlow) { landSelectedLayout: LandSelectedLayout, portSelectedLayout: PortSelectedLayout ->
+                    Pair(landSelectedLayout, portSelectedLayout)
                 }.collect {
                     _settingsUiState.value =
                         SettingUiState.Success(it.first, it.second)
@@ -34,10 +34,10 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
     }
 
     //横レイアウトID updateメソッド
-    fun updateLandSelectedLayoutId(landSelectedLayoutId: LandSelectedLayoutId) {
+    fun updateLandSelectedLayoutId(landSelectedLayout: LandSelectedLayout) {
         viewModelScope.launch {
             try {
-                selectedLayoutIdRepository.updateLandSelectedLayoutId(landSelectedLayoutId)
+                selectedLayoutIdRepository.updateLandSelectedLayoutId(landSelectedLayout)
             } catch (e: Exception) {
                 Log.e("updateLandSelectedLayoutIdViewModelError", e.toString())
             }
@@ -45,10 +45,10 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
     }
 
     //縦レイアウトID updateメソッド
-    fun updatePortSelectedLayoutId(portSelectedLayoutId: PortSelectedLayoutId) {
+    fun updatePortSelectedLayoutId(portSelectedLayout: PortSelectedLayout) {
         viewModelScope.launch {
             try {
-                selectedLayoutIdRepository.updatePortSelectedLayoutId(portSelectedLayoutId)
+                selectedLayoutIdRepository.updatePortSelectedLayoutId(portSelectedLayout)
             } catch (e: Exception) {
                 Log.e("updatePortLandSelectedLayoutIdViewModelError", e.toString())
             }
@@ -71,8 +71,8 @@ class SelectedLayoutIdViewModelFactory(private val selectedLayoutIdRepository: S
 sealed class SettingUiState {
     object Loading : SettingUiState()
     data class Success(
-        val landSelectedLayoutId: LandSelectedLayoutId,
-        val portSelectedLayoutId: PortSelectedLayoutId
+        val landSelectedLayout: LandSelectedLayout,
+        val portSelectedLayout: PortSelectedLayout
     ) : SettingUiState()
 
     data class Error(val e: Exception) : SettingUiState()

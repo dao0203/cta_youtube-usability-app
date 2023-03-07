@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.cta_youtube_usability_app.databinding.FragmentSettingBinding
-import com.example.cta_youtube_usability_app.setting.LandSelectedLayoutId
+import com.example.cta_youtube_usability_app.setting.LandSelectedLayout
 import com.example.cta_youtube_usability_app.setting.LayoutId
-import com.example.cta_youtube_usability_app.setting.PortSelectedLayoutId
+import com.example.cta_youtube_usability_app.setting.PortSelectedLayout
 import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdRepository
 import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdViewModel
 import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdViewModelFactory
@@ -59,14 +59,14 @@ class SettingFragment : Fragment() {
                         binding.landscapeProgress.isVisible = false
                         binding.portraitProgress.isVisible = false
                         //横レイアウトの指定されたラジオボタンをチェック
-                        when (value.landSelectedLayoutId.landSelectedLayoutId) {
+                        when (value.landSelectedLayout.landSelectedLayoutId) {
                             LayoutId.YOUTUBE.name -> binding.optionLandYoutubeLayout.isChecked =
                                 true
                             LayoutId.RIGHT.name -> binding.optionLandRightHand.isChecked = true
                             LayoutId.LEFT.name -> binding.optionLandLeftHand.isChecked = true
                         }
                         //縦レイアウトの指定されたラジオボタンがチェック
-                        when (value.portSelectedLayoutId.portSelectedLayoutId) {
+                        when (value.portSelectedLayout.portSelectedLayoutId) {
                             LayoutId.YOUTUBE.name -> binding.optionPortYoutubeLayout.isChecked =
                                 true
                             LayoutId.RIGHT.name -> binding.optionPortRightHand.isChecked = true
@@ -101,11 +101,11 @@ class SettingFragment : Fragment() {
     private fun updateRandSelectedLayoutId(buttonId: Int) {
         when (buttonId) {
             binding.optionLandYoutubeLayout.id ->
-                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayoutId(LayoutId.YOUTUBE.name))
+                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.YOUTUBE.name))
             binding.optionLandRightHand.id ->
-                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayoutId(LayoutId.RIGHT.name))
+                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.RIGHT.name))
             binding.optionLandLeftHand.id ->
-                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayoutId(LayoutId.LEFT.name))
+                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.LEFT.name))
         }
     }
 
@@ -113,11 +113,11 @@ class SettingFragment : Fragment() {
     private fun updatePortSelectedLayoutId(radioButtonId: Int) {
         when (radioButtonId) {
             binding.optionPortYoutubeLayout.id ->
-                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayoutId(LayoutId.YOUTUBE.name))
+                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.YOUTUBE.name))
             binding.optionPortRightHand.id ->
-                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayoutId(LayoutId.RIGHT.name))
+                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.RIGHT.name))
             binding.optionPortLeftHand.id ->
-                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayoutId(LayoutId.LEFT.name))
+                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.LEFT.name))
         }
     }
 }

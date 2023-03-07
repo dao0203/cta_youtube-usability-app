@@ -27,20 +27,20 @@ class SelectedLayoutIdRepository(private val context: Context) {
 
     //リアルタイムで値を取得するようにFlow型で取得するようにした
     // 横レイアウトIDをリアルタイムで受け取る変数
-    val landSelectedLayoutIdFlow: Flow<LandSelectedLayoutId> = dataStore.data
+    val landSelectedLayoutFlow: Flow<LandSelectedLayout> = dataStore.data
         .map { value: Preferences ->
-            LandSelectedLayoutId(value[LAND_SELECTED_LAYOUT_ID_KEY] ?: LayoutId.YOUTUBE.name)
+            LandSelectedLayout(value[LAND_SELECTED_LAYOUT_ID_KEY] ?: LayoutId.YOUTUBE.name)
         }
 
     // 縦レイアウトIDをリアルタイムで受け取る変数
-    val portSelectedLayoutId: Flow<PortSelectedLayoutId> = dataStore.data
+    val portSelectedLayout: Flow<PortSelectedLayout> = dataStore.data
         .map { value: Preferences ->
-            PortSelectedLayoutId(value[PORT_SELECTED_LAYOUT_ID_KEY] ?: LayoutId.YOUTUBE.name)
+            PortSelectedLayout(value[PORT_SELECTED_LAYOUT_ID_KEY] ?: LayoutId.YOUTUBE.name)
         }
 
     //横レイアウトID updateメソッド
     @WorkerThread
-    suspend fun updateLandSelectedLayoutId(landLayoutId: LandSelectedLayoutId) {
+    suspend fun updateLandSelectedLayoutId(landLayoutId: LandSelectedLayout) {
         withContext(Dispatchers.IO) {
             dataStore.edit { layout ->
                 layout[LAND_SELECTED_LAYOUT_ID_KEY] = landLayoutId.landSelectedLayoutId
@@ -50,10 +50,10 @@ class SelectedLayoutIdRepository(private val context: Context) {
 
     //縦レイアウトID updateメソッド
     @WorkerThread
-    suspend fun updatePortSelectedLayoutId(portSelectedLayoutId: PortSelectedLayoutId) {
+    suspend fun updatePortSelectedLayoutId(portSelectedLayout: PortSelectedLayout) {
         withContext(Dispatchers.IO) {
             dataStore.edit { layout ->
-                layout[PORT_SELECTED_LAYOUT_ID_KEY] = portSelectedLayoutId.portSelectedLayoutId
+                layout[PORT_SELECTED_LAYOUT_ID_KEY] = portSelectedLayout.portSelectedLayoutId
             }
         }
     }
