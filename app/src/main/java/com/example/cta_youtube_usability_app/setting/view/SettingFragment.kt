@@ -62,15 +62,15 @@ class SettingFragment : Fragment() {
                         when (value.landSelectedLayout.landSelectedLayoutId) {
                             LayoutId.YOUTUBE.name -> binding.optionLandYoutubeLayout.isChecked =
                                 true
-                            LayoutId.RIGHT.name -> binding.optionLandRightHand.isChecked = true
-                            LayoutId.LEFT.name -> binding.optionLandLeftHand.isChecked = true
+                            LayoutId.RIGHT_HANDED.name -> binding.optionLandRightHand.isChecked = true
+                            LayoutId.LEFT_HANDED.name -> binding.optionLandLeftHand.isChecked = true
                         }
                         //縦レイアウトの指定されたラジオボタンがチェック
                         when (value.portSelectedLayout.portSelectedLayoutId) {
                             LayoutId.YOUTUBE.name -> binding.optionPortYoutubeLayout.isChecked =
                                 true
-                            LayoutId.RIGHT.name -> binding.optionPortRightHand.isChecked = true
-                            LayoutId.LEFT.name -> binding.optionPortLeftHand.isChecked = true
+                            LayoutId.RIGHT_HANDED.name -> binding.optionPortRightHand.isChecked = true
+                            LayoutId.LEFT_HANDED.name -> binding.optionPortLeftHand.isChecked = true
                         }
                     }
                     is SettingUiState.Error -> {
@@ -103,9 +103,9 @@ class SettingFragment : Fragment() {
             binding.optionLandYoutubeLayout.id ->
                 selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.YOUTUBE.name))
             binding.optionLandRightHand.id ->
-                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.RIGHT.name))
+                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.RIGHT_HANDED.name))
             binding.optionLandLeftHand.id ->
-                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.LEFT.name))
+                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.LEFT_HANDED.name))
         }
     }
 
@@ -115,9 +115,9 @@ class SettingFragment : Fragment() {
             binding.optionPortYoutubeLayout.id ->
                 selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.YOUTUBE.name))
             binding.optionPortRightHand.id ->
-                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.RIGHT.name))
+                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.RIGHT_HANDED.name))
             binding.optionPortLeftHand.id ->
-                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.LEFT.name))
+                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.LEFT_HANDED.name))
         }
     }
 }
