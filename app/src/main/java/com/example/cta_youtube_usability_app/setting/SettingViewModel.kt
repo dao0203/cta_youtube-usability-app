@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
 
-class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: SelectedLayoutIdRepository) :
+class SettingViewModel(private val selectedLayoutIdRepository: SelectedLayoutIdRepository) :
     ViewModel() {
 
     private val _settingsUiState = MutableStateFlow<SettingUiState>(SettingUiState.Loading)
@@ -57,12 +57,12 @@ class SelectedLayoutIdViewModel(private val selectedLayoutIdRepository: Selected
 }
 
 //SelectedLayoutIdViewModelに引数があるので生成していく
-class SelectedLayoutIdViewModelFactory(private val selectedLayoutIdRepository: SelectedLayoutIdRepository) :
+class SettingViewModelFactory(private val selectedLayoutIdRepository: SelectedLayoutIdRepository) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SelectedLayoutIdViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(SettingViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return SelectedLayoutIdViewModel(selectedLayoutIdRepository) as T
+            return SettingViewModel(selectedLayoutIdRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

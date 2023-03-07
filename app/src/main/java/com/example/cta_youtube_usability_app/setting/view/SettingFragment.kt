@@ -13,8 +13,8 @@ import com.example.cta_youtube_usability_app.setting.LandSelectedLayout
 import com.example.cta_youtube_usability_app.setting.LayoutId
 import com.example.cta_youtube_usability_app.setting.PortSelectedLayout
 import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdRepository
-import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdViewModel
-import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdViewModelFactory
+import com.example.cta_youtube_usability_app.setting.SettingViewModel
+import com.example.cta_youtube_usability_app.setting.SettingViewModelFactory
 import com.example.cta_youtube_usability_app.setting.SettingUiState
 import kotlinx.coroutines.flow.collectLatest
 
@@ -22,8 +22,8 @@ class SettingFragment : Fragment() {
 
     private var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
-    private val selectedLayoutIdViewModel: SelectedLayoutIdViewModel by viewModels {
-        SelectedLayoutIdViewModelFactory(SelectedLayoutIdRepository(requireContext()))
+    private val settingViewModel: SettingViewModel by viewModels {
+        SettingViewModelFactory(SelectedLayoutIdRepository(requireContext()))
     }
 
     override fun onCreateView(
@@ -38,8 +38,8 @@ class SettingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
-            selectedLayoutIdViewModel.getEachSelectedLayoutId()
-            selectedLayoutIdViewModel.settingsUiState.collectLatest { value ->
+            settingViewModel.getEachSelectedLayoutId()
+            settingViewModel.settingsUiState.collectLatest { value ->
                 when (value) {
                     is SettingUiState.Loading -> {//ローディング中
                         //ラジオグループを不可視化
@@ -99,11 +99,11 @@ class SettingFragment : Fragment() {
     private fun updateRandSelectedLayoutId(buttonId: Int) {
         when (buttonId) {
             binding.optionLandYoutubeLayout.id ->
-                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.YOUTUBE.name))
+                settingViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.YOUTUBE.name))
             binding.optionLandRightHand.id ->
-                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.RIGHT_HANDED.name))
+                settingViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.RIGHT_HANDED.name))
             binding.optionLandLeftHand.id ->
-                selectedLayoutIdViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.LEFT_HANDED.name))
+                settingViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.LEFT_HANDED.name))
         }
     }
 
@@ -111,11 +111,11 @@ class SettingFragment : Fragment() {
     private fun updatePortSelectedLayoutId(radioButtonId: Int) {
         when (radioButtonId) {
             binding.optionPortYoutubeLayout.id ->
-                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.YOUTUBE.name))
+                settingViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.YOUTUBE.name))
             binding.optionPortRightHand.id ->
-                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.RIGHT_HANDED.name))
+                settingViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.RIGHT_HANDED.name))
             binding.optionPortLeftHand.id ->
-                selectedLayoutIdViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.LEFT_HANDED.name))
+                settingViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.LEFT_HANDED.name))
         }
     }
 }
