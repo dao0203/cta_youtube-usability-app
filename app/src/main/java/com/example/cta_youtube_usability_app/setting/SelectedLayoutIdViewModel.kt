@@ -74,6 +74,5 @@ sealed class SettingUiState {
         val landSelectedLayout: LandSelectedLayout,
         val portSelectedLayout: PortSelectedLayout
     ) : SettingUiState()
-
     data class Error(val e: Exception) : SettingUiState()
 }
