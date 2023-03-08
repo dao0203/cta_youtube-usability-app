@@ -8,13 +8,15 @@
 
     <TextView
         android:id="@+id/landscape_text"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/landscape_text"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/land_radio_group"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
     <ProgressBar
         android:id="@+id/landscape_progress"
         android:layout_height="wrap_content"
@@ -25,11 +27,13 @@
 
     <RadioGroup
         android:id="@+id/land_radio_group"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/portrait_text"
-        app:layout_constraintTop_toBottomOf="@id/landscape_text">
+        app:layout_constraintTop_toBottomOf="@id/landscape_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <RadioButton
             android:id="@+id/option_land_youtube_layout"
@@ -56,12 +60,14 @@
 
     <TextView
         android:id="@+id/portrait_text"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/portrait_text"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/land_radio_group" />
+        app:layout_constraintTop_toBottomOf="@id/land_radio_group"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <ProgressBar
         android:id="@+id/portrait_progress"
@@ -73,10 +79,12 @@
 
     <RadioGroup
         android:id="@+id/port_radio_group"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/portrait_text">
+        app:layout_constraintTop_toBottomOf="@+id/portrait_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <RadioButton
             android:id="@+id/option_port_youtube_layout"
