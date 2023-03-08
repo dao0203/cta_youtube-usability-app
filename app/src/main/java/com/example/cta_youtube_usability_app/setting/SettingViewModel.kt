@@ -28,7 +28,7 @@ class SettingViewModel(private val selectedLayoutIdRepository: SelectedLayoutIdR
                         SettingUiState.Success(it.first, it.second)
                 }
             } catch (e: Exception) {
-                _settingsUiState.value = SettingUiState.Error(e)
+                _settingsUiState.value = SettingUiState.Error(e.toString())
             }
         }
     }
@@ -74,5 +74,6 @@ sealed class SettingUiState {
         val landSelectedLayout: LandSelectedLayout,
         val portSelectedLayout: PortSelectedLayout
     ) : SettingUiState()
-    data class Error(val e: Exception) : SettingUiState()
+
+    data class Error(val e: String) : SettingUiState()
 }
