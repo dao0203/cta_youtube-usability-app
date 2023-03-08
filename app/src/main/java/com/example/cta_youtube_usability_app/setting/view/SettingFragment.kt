@@ -109,31 +109,29 @@ class SettingFragment : Fragment() {
     private fun operateUiWidget(settingUiState: SettingUiState) {
         when (settingUiState) {
             is SettingUiState.Loading -> {
-                //ラジオグループを不可視化
+                //プログレスバー以外を不可視化
+                binding.landscapeText.isVisible = false
                 binding.landRadioGroup.isVisible = false
-                binding.portRadioGroup.isVisible = false
-                //エラーテキストを不可視化
-                binding.landscapeErrorText.isVisible = false
-                binding.portraitErrorText.isVisible = false
-                //プログレスバーを可視化
-                binding.landscapeProgress.isVisible = true
-                binding.portraitProgress.isVisible = true
+                binding.errorText.isVisible = false
+                binding.portraitText.isVisible = false
+                binding.portRadioGroup.isVisible =false
+                binding.errorText.isVisible =false
             }
             is SettingUiState.Success -> {
-                //ラジオグループを可視化
-                binding.landRadioGroup.isVisible = true
-                binding.portRadioGroup.isVisible = true
                 //プログレスバーを不可視化
-                binding.landscapeProgress.isVisible = false
-                binding.portraitProgress.isVisible = false
+                binding.loadingProgressBar.isVisible = false
+                //プログレスバーとエラーテキスト以外を可視化
+                binding.landscapeText.isVisible = true
+                binding.landRadioGroup.isVisible = true
+                binding.errorText.isVisible = true
+                binding.portraitText.isVisible =true
+                binding.portRadioGroup.isVisible =true
             }
             is SettingUiState.Error -> {
                 //プログレスバーを不可視化
-                binding.landscapeProgress.isVisible = false
-                binding.portraitProgress.isVisible = false
+                binding.loadingProgressBar.isVisible = false
                 //エラーテキストを可視化
-                binding.landscapeErrorText.isVisible = true
-                binding.portraitErrorText.isVisible = true
+                binding.errorText.isVisible = true
             }
         }
     }
@@ -144,7 +142,6 @@ class SettingFragment : Fragment() {
             LayoutId.YOUTUBE.name -> binding.optionLandYoutubeLayout.isChecked = true
             LayoutId.RIGHT_HANDED.name -> binding.optionLandRightHand.isChecked = true
             LayoutId.LEFT_HANDED.name -> binding.optionLandLeftHand.isChecked = true
-
         }
     }
 
