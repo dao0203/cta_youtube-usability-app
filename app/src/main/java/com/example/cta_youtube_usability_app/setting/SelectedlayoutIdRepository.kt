@@ -41,7 +41,6 @@ class SelectedLayoutIdRepository(context: Context) {
         }
 
     //横レイアウトID updateメソッド
-    @WorkerThread
     suspend fun updateLandSelectedLayoutId(landLayoutId: LandSelectedLayout) {
         withContext(Dispatchers.IO) {
             dataStore.edit { layout ->
@@ -51,7 +50,6 @@ class SelectedLayoutIdRepository(context: Context) {
     }
 
     //縦レイアウトID updateメソッド
-    @WorkerThread
     suspend fun updatePortSelectedLayoutId(portSelectedLayout: PortSelectedLayout) {
         withContext(Dispatchers.IO) {
             dataStore.edit { layout ->
