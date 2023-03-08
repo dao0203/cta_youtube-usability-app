@@ -42,38 +42,20 @@ class SettingFragment : Fragment() {
             settingViewModel.settingsUiState.collectLatest { value ->
                 when (value) {
                     is SettingUiState.Loading -> {//ローディング中
-                        //ラジオグループを不可視化
-                        binding.landRadioGroup.isVisible = false
-                        binding.portRadioGroup.isVisible = false
                         //プログレスバーを可視化
-                        binding.landscapeProgress.isVisible = true
-                        binding.portraitProgress.isVisible = true
+                        operateUiWidget(value)
                     }
                     is SettingUiState.Success -> {//データ取得成功時
                         //ラジオグループを可視化
-                        binding.landRadioGroup.isVisible = true
-                        binding.portRadioGroup.isVisible = true
-                        //プログレスバーを不可視化
-                        binding.landscapeProgress.isVisible = false
-                        binding.portraitProgress.isVisible = false
+                        operateUiWidget(value)
                         //横レイアウトの指定されたラジオボタンをチェック
-                        when (value.landSelectedLayout.landSelectedLayoutId) {
-                            LayoutId.YOUTUBE.name -> binding.optionLandYoutubeLayout.isChecked =
-                                true
-                            LayoutId.RIGHT_HANDED.name -> binding.optionLandRightHand.isChecked = true
-                            LayoutId.LEFT_HANDED.name -> binding.optionLandLeftHand.isChecked = true
-                        }
+                        selectDefaultLandRadioButton(value.portSelectedLayout.portSelectedLayoutId)
                         //縦レイアウトの指定されたラジオボタンがチェック
-                        when (value.portSelectedLayout.portSelectedLayoutId) {
-                            LayoutId.YOUTUBE.name -> binding.optionPortYoutubeLayout.isChecked =
-                                true
-                            LayoutId.RIGHT_HANDED.name -> binding.optionPortRightHand.isChecked = true
-                            LayoutId.LEFT_HANDED.name -> binding.optionPortLeftHand.isChecked = true
-                        }
+                        selectDefaultPortRadioButton(value.portSelectedLayout.portSelectedLayoutId)
                     }
-                    is SettingUiState.Error -> {
-                        binding.landRadioGroup.isVisible = false
-                        binding.portRadioGroup.isVisible = false
+                    is SettingUiState.Error -> {//データ取得失敗時
+                        //エラーテキストを可視化
+                        operateUiWidget(value)
                     }
                 }
             }
@@ -116,6 +98,58 @@ class SettingFragment : Fragment() {
                 settingViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.RIGHT_HANDED.name))
             binding.optionPortLeftHand.id ->
                 settingViewModel.updatePortSelectedLayoutId(PortSelectedLayout(LayoutId.LEFT_HANDED.name))
+        }
+    }
+
+    // データの通信状況によってUIの状態を更新するメソッド
+    private fun operateUiWidget(settingUiState: SettingUiState) {
+        when (settingUiState) {
+            is SettingUiState.Loading -> {
+                //ラジオグループを不可視化
+                binding.landRadioGroup.isVisible = false
+                binding.portRadioGroup.isVisible = false
+                //エラーテキストを不可視化
+                binding.landscapeErrorText.isVisible = false
+                binding.portraitErrorText.isVisible = false
+                //プログレスバーを可視化
+                binding.landscapeProgress.isVisible = true
+                binding.portraitProgress.isVisible = true
+            }
+            is SettingUiState.Success -> {
+                //ラジオグループを可視化
+                binding.landRadioGroup.isVisible = true
+                binding.portRadioGroup.isVisible = true
+                //プログレスバーを不可視化
+                binding.landscapeProgress.isVisible = false
+                binding.portraitProgress.isVisible = false
+            }
+            is SettingUiState.Error -> {
+                //プログレスバーを不可視化
+                binding.landscapeProgress.isVisible = false
+                binding.portraitProgress.isVisible = false
+                //エラーテキストを可視化
+                binding.landscapeErrorText.isVisible = true
+                binding.portraitErrorText.isVisible = true
+            }
+        }
+    }
+
+    //横レイアウトの指定さrたラジオボタンをチェックするメソッド
+    private fun selectDefaultLandRadioButton(landSelectedLayoutId: String) {
+        when (landSelectedLayoutId) {
+            LayoutId.YOUTUBE.name -> binding.optionLandYoutubeLayout.isChecked = true
+            LayoutId.RIGHT_HANDED.name -> binding.optionLandRightHand.isChecked = true
+            LayoutId.LEFT_HANDED.name -> binding.optionLandLeftHand.isChecked = true
+
+        }
+    }
+
+    //縦レイアウトの指定されたラジオボタンをチェックするメソッド
+    private fun selectDefaultPortRadioButton(portSelectedLayoutId: String) {
+        when (portSelectedLayoutId) {
+            LayoutId.YOUTUBE.name -> binding.optionPortYoutubeLayout.isChecked = true
+            LayoutId.RIGHT_HANDED.name -> binding.optionPortRightHand.isChecked = true
+            LayoutId.LEFT_HANDED.name -> binding.optionPortLeftHand.isChecked = true
         }
     }
 }
