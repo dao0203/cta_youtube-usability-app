@@ -33,7 +33,7 @@ class SelectedLayoutIdRepository(context: Context) {
         }
 
     // 縦レイアウトIDをリアルタイムで受け取る変数
-    val portSelectedLayout: Flow<PortSelectedLayout> = dataStore.data
+    val portSelectedLayoutFlow: Flow<PortSelectedLayout> = dataStore.data
         .map { value: Preferences ->
             PortSelectedLayout(value[PORT_SELECTED_LAYOUT_ID_KEY] ?: LayoutId.YOUTUBE.name)
         }

@@ -20,7 +20,7 @@ class SettingViewModel(private val selectedLayoutIdRepository: SelectedLayoutIdR
         viewModelScope.launch {
             try {
                 val landSelectedLayoutIdFlow = selectedLayoutIdRepository.landSelectedLayoutFlow
-                val portSelectedLayoutIdFlow = selectedLayoutIdRepository.portSelectedLayout
+                val portSelectedLayoutIdFlow = selectedLayoutIdRepository.portSelectedLayoutFlow
                 landSelectedLayoutIdFlow.zip(portSelectedLayoutIdFlow) { landSelectedLayout: LandSelectedLayout, portSelectedLayout: PortSelectedLayout ->
                     Pair(landSelectedLayout, portSelectedLayout)
                 }.collect {
