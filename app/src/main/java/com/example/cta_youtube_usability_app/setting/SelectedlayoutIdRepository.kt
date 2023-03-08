@@ -15,7 +15,6 @@ import kotlinx.coroutines.withContext
 //DataStoreをシングルトンとして扱えるようにする
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "layout")
 
-//シングルトンとして扱えるようにするため、拡張関数を引数として持ってくる
 class SelectedLayoutIdRepository(context: Context) {
 
     //dataStoreのデータのやり取りを行うために宣言
