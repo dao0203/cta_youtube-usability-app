@@ -16,7 +16,6 @@ import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdRepository
 import com.example.cta_youtube_usability_app.setting.SettingViewModel
 import com.example.cta_youtube_usability_app.setting.SettingViewModelFactory
 import com.example.cta_youtube_usability_app.setting.SettingUiState
-import kotlinx.coroutines.flow.collectLatest
 
 class SettingFragment : Fragment() {
 
@@ -39,7 +38,7 @@ class SettingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
             settingViewModel.getEachSelectedLayoutId()
-            settingViewModel.settingsUiState.collectLatest { value ->
+            settingViewModel.settingsUiState.collect { value ->
                 when (value) {
                     is SettingUiState.Loading -> {//ローディング中
                         //プログレスバーを可視化
