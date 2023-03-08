@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.cta_youtube_usability_app.databinding.FragmentSettingBinding
 import com.example.cta_youtube_usability_app.setting.LandSelectedLayout
 import com.example.cta_youtube_usability_app.setting.LayoutId
@@ -16,6 +18,7 @@ import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdRepository
 import com.example.cta_youtube_usability_app.setting.SettingViewModel
 import com.example.cta_youtube_usability_app.setting.SettingViewModelFactory
 import com.example.cta_youtube_usability_app.setting.SettingUiState
+import kotlinx.coroutines.launch
 
 class SettingFragment : Fragment() {
 
@@ -36,25 +39,27 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        lifecycleScope.launchWhenStarted {
-            settingViewModel.getEachSelectedLayoutId()
-            settingViewModel.settingsUiState.collect { value ->
-                when (value) {
-                    is SettingUiState.Loading -> {//ローディング中
-                        //プログレスバーを可視化
-                        operateUiWidget(value)
-                    }
-                    is SettingUiState.Success -> {//データ取得成功時
-                        //ラジオグループを可視化
-                        operateUiWidget(value)
-                        //横レイアウトの指定されたラジオボタンをチェック
-                        selectDefaultLandRadioButton(value.landSelectedLayout.landSelectedLayoutId)
-                        //縦レイアウトの指定されたラジオボタンがチェック
-                        selectDefaultPortRadioButton(value.portSelectedLayout.portSelectedLayoutId)
-                    }
-                    is SettingUiState.Error -> {//データ取得失敗時
-                        //エラーテキストを可視化
-                        operateUiWidget(value)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED){//CREATED時に実行されるようにする
+                settingViewModel.getEachSelectedLayoutId()
+                settingViewModel.settingsUiState.collect { value ->
+                    when (value) {
+                        is SettingUiState.Loading -> {//ローディング中
+                            //プログレスバーを可視化
+                            operateUiWidget(value)
+                        }
+                        is SettingUiState.Success -> {//データ取得成功時
+                            //ラジオグループを可視化
+                            operateUiWidget(value)
+                            //横レイアウトの指定されたラジオボタンをチェック
+                            selectDefaultLandRadioButton(value.landSelectedLayout.landSelectedLayoutId)
+                            //縦レイアウトの指定されたラジオボタンがチェック
+                            selectDefaultPortRadioButton(value.portSelectedLayout.portSelectedLayoutId)
+                        }
+                        is SettingUiState.Error -> {//データ取得失敗時
+                            //エラーテキストを可視化
+                            operateUiWidget(value)
+                        }
                     }
                 }
             }
