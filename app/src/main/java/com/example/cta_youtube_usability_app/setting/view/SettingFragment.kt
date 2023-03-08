@@ -49,7 +49,7 @@ class SettingFragment : Fragment() {
                         //ラジオグループを可視化
                         operateUiWidget(value)
                         //横レイアウトの指定されたラジオボタンをチェック
-                        selectDefaultLandRadioButton(value.portSelectedLayout.portSelectedLayoutId)
+                        selectDefaultLandRadioButton(value.landSelectedLayout.landSelectedLayoutId)
                         //縦レイアウトの指定されたラジオボタンがチェック
                         selectDefaultPortRadioButton(value.portSelectedLayout.portSelectedLayoutId)
                     }
@@ -62,7 +62,7 @@ class SettingFragment : Fragment() {
         }
         //横向きレイアウトのラジオグループの動作
         binding.landRadioGroup.setOnCheckedChangeListener { _, checkedId ->
-            updateRandSelectedLayoutId(checkedId)
+            updateLandSelectedLayoutId(checkedId)
         }
 
         //縦向きレイアウトのラジオグループの動作
@@ -78,7 +78,7 @@ class SettingFragment : Fragment() {
     }
 
     //横向きレイアウトのラジオボタンの動作でDataStoreのvalueを更新するメソッド
-    private fun updateRandSelectedLayoutId(buttonId: Int) {
+    private fun updateLandSelectedLayoutId(buttonId: Int) {
         when (buttonId) {
             binding.optionLandYoutubeLayout.id ->
                 settingViewModel.updateLandSelectedLayoutId(LandSelectedLayout(LayoutId.YOUTUBE.name))

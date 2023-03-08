@@ -7,10 +7,8 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
 
 //DataStoreをシングルトンとして扱えるようにする
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "layout")
@@ -20,7 +18,7 @@ class SelectedLayoutIdRepository(context: Context) {
     //dataStoreのデータのやり取りを行うために宣言
     private val dataStore = context.dataStore
 
-    companion object{
+    companion object {
         //横と縦のレイアウトIDを格納するKeyを宣言
         private val LAND_SELECTED_LAYOUT_ID_KEY = stringPreferencesKey("land_selected_layout_id")
         private val PORT_SELECTED_LAYOUT_ID_KEY = stringPreferencesKey("port_selected_layout_id")
@@ -41,20 +39,18 @@ class SelectedLayoutIdRepository(context: Context) {
         }
 
     //横レイアウトID updateメソッド
+    @WorkerThread
     suspend fun updateLandSelectedLayoutId(landLayoutId: LandSelectedLayout) {
-        withContext(Dispatchers.IO) {
-            dataStore.edit { layout ->
-                layout[LAND_SELECTED_LAYOUT_ID_KEY] = landLayoutId.landSelectedLayoutId
-            }
+        dataStore.edit { land ->
+            land[LAND_SELECTED_LAYOUT_ID_KEY] = landLayoutId.landSelectedLayoutId
         }
     }
 
     //縦レイアウトID updateメソッド
+    @WorkerThread
     suspend fun updatePortSelectedLayoutId(portSelectedLayout: PortSelectedLayout) {
-        withContext(Dispatchers.IO) {
-            dataStore.edit { layout ->
-                layout[PORT_SELECTED_LAYOUT_ID_KEY] = portSelectedLayout.portSelectedLayoutId
-            }
+        dataStore.edit { port ->
+            port[PORT_SELECTED_LAYOUT_ID_KEY] = portSelectedLayout.portSelectedLayoutId
         }
     }
 }
