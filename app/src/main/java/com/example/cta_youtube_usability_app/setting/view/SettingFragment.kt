@@ -40,7 +40,7 @@ class SettingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.CREATED){//CREATED時に実行されるようにする
+            repeatOnLifecycle(Lifecycle.State.CREATED) {//CREATED時に実行されるようにする
                 settingViewModel.getEachSelectedLayoutId()
                 settingViewModel.settingsUiState.collect { value ->
                     when (value) {
@@ -114,8 +114,8 @@ class SettingFragment : Fragment() {
                 binding.landRadioGroup.isVisible = false
                 binding.errorText.isVisible = false
                 binding.portraitText.isVisible = false
-                binding.portRadioGroup.isVisible =false
-                binding.errorText.isVisible =false
+                binding.portRadioGroup.isVisible = false
+                binding.errorText.isVisible = false
             }
             is SettingUiState.Success -> {
                 //プログレスバーを不可視化
@@ -123,9 +123,8 @@ class SettingFragment : Fragment() {
                 //プログレスバーとエラーテキスト以外を可視化
                 binding.landscapeText.isVisible = true
                 binding.landRadioGroup.isVisible = true
-                binding.errorText.isVisible = true
-                binding.portraitText.isVisible =true
-                binding.portRadioGroup.isVisible =true
+                binding.portraitText.isVisible = true
+                binding.portRadioGroup.isVisible = true
             }
             is SettingUiState.Error -> {
                 //プログレスバーを不可視化
