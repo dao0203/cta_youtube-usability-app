@@ -135,7 +135,7 @@ class SettingFragment : Fragment() {
         }
     }
 
-    //横レイアウトの指定さrたラジオボタンをチェックするメソッド
+    //横レイアウトの指定されたラジオボタンをチェックするメソッド
     private fun selectDefaultLandRadioButton(landSelectedLayoutId: String) {
         when (landSelectedLayoutId) {
             LayoutId.YOUTUBE.name -> binding.optionLandYoutubeLayout.isChecked = true
