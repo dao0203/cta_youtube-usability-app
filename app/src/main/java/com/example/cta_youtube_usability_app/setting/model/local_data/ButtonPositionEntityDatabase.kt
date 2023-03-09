@@ -6,18 +6,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [ButtonPositionEntity::class], version = 1, exportSchema = false)
-abstract class ButtonPositionDatabase : RoomDatabase() {
-    abstract fun buttonPositionDao(): ButtonPositionTableDao
+abstract class ButtonPositionEntityDatabase : RoomDatabase() {
+    abstract fun buttonPositionDao(): ButtonPositionEntityDao
 
     companion object {
         @Volatile
-        private var INSTANCE: ButtonPositionDatabase? = null
+        private var INSTANCE: ButtonPositionEntityDatabase? = null
 
-        fun getDatabase(context: Context): ButtonPositionDatabase {
+        fun getDatabase(context: Context): ButtonPositionEntityDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    ButtonPositionDatabase::class.java,
+                    ButtonPositionEntityDatabase::class.java,
                     "button_position_database"
                 ).build()
                 INSTANCE = instance
