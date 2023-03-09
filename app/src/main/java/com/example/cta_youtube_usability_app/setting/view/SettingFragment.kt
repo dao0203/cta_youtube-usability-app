@@ -46,11 +46,11 @@ class SettingFragment : Fragment() {
                     when (value) {
                         is SettingUiState.Loading -> {//ローディング中
                             //プログレスバーを可視化
-                            operateUiWidget(value)
+                            updateVisibility(value)
                         }
                         is SettingUiState.Success -> {//データ取得成功時
                             //ラジオグループを可視化
-                            operateUiWidget(value)
+                            updateVisibility(value)
                             //横レイアウトの指定されたラジオボタンをチェック
                             selectDefaultLandRadioButton(value.landSelectedLayout.landSelectedLayoutId)
                             //縦レイアウトの指定されたラジオボタンがチェック
@@ -58,7 +58,7 @@ class SettingFragment : Fragment() {
                         }
                         is SettingUiState.Error -> {//データ取得失敗時
                             //エラーテキストを可視化
-                            operateUiWidget(value)
+                            updateVisibility(value)
                         }
                     }
                 }
@@ -106,7 +106,7 @@ class SettingFragment : Fragment() {
     }
 
     // データの通信状況によってUIの状態を更新するメソッド
-    private fun operateUiWidget(settingUiState: SettingUiState) {
+    private fun updateVisibility(settingUiState: SettingUiState) {
         when (settingUiState) {
             is SettingUiState.Loading -> {
                 //プログレスバー以外を不可視化
