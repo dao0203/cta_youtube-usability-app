@@ -19,10 +19,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    //TODO:マージした時のConflictを解消
-    viewBinding{
-        enabled = true
-    }
     buildTypes {
         release {
             minifyEnabled false
