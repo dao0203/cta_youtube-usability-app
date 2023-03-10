@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/watching_view"
+        android:id="@+id/video_fragment"
         android:enabled="true"
         android:icon="@drawable/baseline_smart_display_24"
         android:title="@string/title_movie"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/setting_view"
+        android:id="@+id/setting_fragment"
         android:enabled="true"
         android:icon="@drawable/baseline_settings_24"
         android:title="@string/title_layout_setting"
