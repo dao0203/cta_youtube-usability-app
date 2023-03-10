@@ -12,7 +12,9 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.common.util.Util
 import androidx.media3.exoplayer.ExoPlayer
+import com.example.cta_youtube_usability_app.R
 import com.example.cta_youtube_usability_app.databinding.FragmentVideoBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 //TODO:縦・横画面の向きを変更した時に動画が最初からにならないようにする
 
@@ -34,6 +36,16 @@ class VideoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //横向きの時、ボトムナビゲーションビューを削除する
+        val orientation = resources.configuration.orientation
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            //FIXME:findViewByIdでActivityからボトムナビゲーションビューを呼び出している
+            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_view).isVisible = false
+        }
     }
 
     //APIレベル24以上のAndroidだと分割ウィンドウモードではアクティブにならないので、
