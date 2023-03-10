@@ -7,10 +7,12 @@
     android:layout_height="match_parent"
     tools:context=".movie.MovieFragment">
 
-
-    <TextView
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/video_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        app:show_timeout="10000"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
