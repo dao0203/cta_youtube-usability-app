@@ -8,26 +8,13 @@
     android:background="#000000"
     tools:context=".movie.VideoFragment">
 
-
     <androidx.media3.ui.PlayerView
         android:id="@+id/video_view"
         android:layout_width="match_parent"
-        android:layout_height="900dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
         app:controller_layout_id="@layout/youtube_layout"
-        app:layout_constraintBottom_toTopOf="@id/invisible_view"
         app:show_timeout="10000"
         tools:layout_editor_absoluteX="0dp" />
-
-
-    <!--    仮のボトムナビゲーションビュー-->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/invisible_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
