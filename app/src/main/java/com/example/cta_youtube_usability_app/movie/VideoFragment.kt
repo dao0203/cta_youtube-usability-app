@@ -1,6 +1,5 @@
 package com.example.cta_youtube_usability_app.movie
 
-import android.annotation.SuppressLint
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
@@ -110,7 +109,7 @@ class VideoFragment : Fragment() {
             //現在の再生位置を保存
             this@VideoFragment.playbackPosition = this.currentPosition
             //ウィンドウインデックスを保存
-            this@VideoFragment.currentWindow = this.currentWindowIndex
+            this@VideoFragment.currentWindow = currentMediaItemIndex
             //再生・一時停止状態を保存
             playWhenReady = this.playWhenReady
             release()
