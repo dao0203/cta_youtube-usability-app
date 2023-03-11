@@ -2,10 +2,12 @@ package com.example.cta_youtube_usability_app.movie
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowInsets
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.media3.common.MediaItem
@@ -82,14 +84,24 @@ class VideoFragment : Fragment() {
         }
     }
 
-    @SuppressLint("inlinedApi")
+
     private fun hideSystemUi() {
-        binding.videoView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
-                or View.SYSTEM_UI_FLAG_FULLSCREEN
-                or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+        //APIレベルが30以上の時
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val controller = binding.videoView.windowInsetsController
+            controller?.hide(
+                WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars()
+            )
+        } else {//APIレベルが29以下の時
+            @Suppress("deprecation")
+            binding.videoView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LOW_PROFILE
+                    or View.SYSTEM_UI_FLAG_FULLSCREEN
+                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
+        }
+
     }
 
     //保存した状態情報を初期化時にプレーヤに提供するメソッド
