@@ -44,7 +44,6 @@ class VideoFragment : Fragment() {
         //横向きの時、ボトムナビゲーションビューを削除する
         val orientation = resources.configuration.orientation
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            //TODO: PlayerViewのMarginBottomを横向きになった時に0dpにしたい。
             //FIXME:findViewByIdでActivityからボトムナビゲーションビューを呼び出している
             requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_view).isVisible =
                 false
