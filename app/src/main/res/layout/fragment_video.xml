@@ -12,7 +12,9 @@
     <androidx.media3.ui.PlayerView
         android:id="@+id/video_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="900dp"
+        app:controller_layout_id="@layout/youtube_layout"
+        app:layout_constraintBottom_toTopOf="@id/invisible_view"
         app:show_timeout="10000"
         tools:layout_editor_absoluteX="0dp" />
 
