@@ -44,7 +44,8 @@ class VideoFragment : Fragment() {
         val orientation = resources.configuration.orientation
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             //FIXME:findViewByIdでActivityからボトムナビゲーションビューを呼び出している
-            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_view).isVisible = false
+            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_view).isVisible =
+                false
         }
     }
 

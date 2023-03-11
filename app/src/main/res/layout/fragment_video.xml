@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/video_fragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/video_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
     tools:context=".movie.VideoFragment">
+
 
     <androidx.media3.ui.PlayerView
         android:id="@+id/video_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:show_timeout="10000"
-        />
+        tools:layout_editor_absoluteX="0dp" />
+
+
+    <!--    仮のボトムナビゲーションビュー-->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/invisible_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
