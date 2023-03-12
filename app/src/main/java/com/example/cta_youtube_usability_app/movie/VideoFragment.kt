@@ -39,17 +39,6 @@ class VideoFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        //横向きの時、ボトムナビゲーションビューを削除する
-        val orientation = resources.configuration.orientation
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            //FIXME:findViewByIdでActivityからボトムナビゲーションビューを呼び出している
-            requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_view).isVisible =
-                false
-        }
-    }
-
     //APIレベル24以上のAndroidだと分割ウィンドウモードではアクティブにならないので、
     //プレーヤを初期化する必要がある
     override fun onStart() {
@@ -111,7 +100,7 @@ class VideoFragment : Fragment() {
             //ウィンドウインデックスを保存
             this@VideoFragment.currentWindow = currentMediaItemIndex
             //再生・一時停止状態を保存
-            playWhenReady = this.playWhenReady
+//            playWhenReady = this.playWhenReady
             release()
         }
         player = null
