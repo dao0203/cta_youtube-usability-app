@@ -125,6 +125,7 @@ class SettingFragment : Fragment() {
                 binding.landRadioGroup.isVisible = true
                 binding.portraitText.isVisible = true
                 binding.portRadioGroup.isVisible = true
+                binding.errorText.isVisible = false
             }
             is SettingUiState.Error -> {
                 //プログレスバーを不可視化
