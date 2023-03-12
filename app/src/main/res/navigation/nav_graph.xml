@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_host_fragment"
-    app:startDestination="@id/video_fragment">
+    app:startDestination="@id/video_destination">
 
     <fragment
-        android:id="@+id/setting_fragment"
+        android:id="@+id/setting_destination"
         android:name="com.example.cta_youtube_usability_app.setting.view.SettingFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
 
     <fragment
-        android:id="@+id/video_fragment"
+        android:id="@+id/video_destination"
         android:name="com.example.cta_youtube_usability_app.movie.VideoFragment"
         android:label="fragment_video"
         tools:layout="@layout/fragment_video" />
