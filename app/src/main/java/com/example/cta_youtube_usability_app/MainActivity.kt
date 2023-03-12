@@ -1,7 +1,9 @@
 package com.example.cta_youtube_usability_app
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.cta_youtube_usability_app.databinding.ActivityMainBinding
@@ -17,5 +19,12 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(binding.navHostFragment.id)
         val navController = navHostFragment?.findNavController()
         binding.bottomNavigationView.setupWithNavController(navController!!)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            //動画画面かつ横画面の時、ボトムナビゲーションバーが削除
+            if (destination.id == R.id.video_destination &&
+                resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                binding.bottomNavigationView.isVisible = false
+            }
+        }
     }
 }
