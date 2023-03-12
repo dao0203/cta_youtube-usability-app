@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="error_red">#DD2C00</color>
+    <color name="player_view_background">#00000000</color>
 </resources>
