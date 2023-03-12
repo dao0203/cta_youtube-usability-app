@@ -15,7 +15,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/player_view_background"
     android:layoutDirection="ltr"
@@ -23,13 +23,11 @@
     tools:targetApi="33">
     <!-- 背景を透明にしている-->
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:layout_gravity="top"
         android:orientation="horizontal"
         android:paddingTop="4dp">
 
@@ -39,8 +37,7 @@
 
         <ImageButton
             android:id="@id/exo_rew"
-            style="@style/ExoMediaButton.Rewind"
-            />
+            style="@style/ExoMediaButton.Rewind" />
 
         <ImageButton
             android:id="@id/exo_shuffle"
@@ -52,14 +49,7 @@
 
         <ImageButton
             android:id="@id/exo_play_pause"
-            style="@style/ExoMediaButton.Play"/>
-<!--        <ImageButton-->
-<!--            android:id="@id/exo_play"-->
-<!--            style="@style/ExoMediaButton.Play" />-->
-
-<!--        <ImageButton-->
-<!--            android:id="@id/exo_pause"-->
-<!--            style="@style/ExoMediaButton.Pause" />-->
+            style="@style/ExoMediaButton.Play" />
 
         <ImageButton
             android:id="@id/exo_ffwd"
