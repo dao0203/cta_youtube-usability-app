@@ -1,21 +1,16 @@
 package com.example.cta_youtube_usability_app.movie
 
-import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.media3.common.MediaItem
 import androidx.media3.common.util.UnstableApi
-import androidx.media3.common.util.Util
 import androidx.media3.exoplayer.ExoPlayer
-import com.example.cta_youtube_usability_app.R
 import com.example.cta_youtube_usability_app.databinding.FragmentVideoBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 //TODO:縦・横画面の向きを変更した時に動画が最初からにならないようにする
 
@@ -43,33 +38,18 @@ class VideoFragment : Fragment() {
     //プレーヤを初期化する必要がある
     override fun onStart() {
         super.onStart()
-        if (Util.SDK_INT >= 24) {
-            initializePlayer()
-        }
+        initializePlayer()
     }
 
 
     override fun onResume() {
         super.onResume()
         hideSystemUi()
-        if ((Util.SDK_INT < 24 || player == null)) {
-            initializePlayer()
-        }
-    }
-
-    //APIレベル24以下のAndroidだとonStopが呼び出される保証がない
-    override fun onPause() {
-        super.onPause()
-        if (Util.SDK_INT < 24) {
-            releasePlayer()
-        }
     }
 
     override fun onStop() {
         super.onStop()
-        if (Util.SDK_INT >= 24) {
-            releasePlayer()
-        }
+        releasePlayer()
     }
 
 
@@ -96,11 +76,11 @@ class VideoFragment : Fragment() {
     private fun releasePlayer() {
         player?.run {
             //現在の再生位置を保存
-            this@VideoFragment.playbackPosition = this.currentPosition
+            this@VideoFragment.playbackPosition = currentPosition
             //ウィンドウインデックスを保存
             this@VideoFragment.currentWindow = currentMediaItemIndex
             //再生・一時停止状態を保存
-//            playWhenReady = this.playWhenReady
+            this@VideoFragment.playWhenReady = playWhenReady
             release()
         }
         player = null
