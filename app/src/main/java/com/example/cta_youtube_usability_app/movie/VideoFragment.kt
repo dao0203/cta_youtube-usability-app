@@ -34,8 +34,6 @@ class VideoFragment : Fragment() {
         return binding.root
     }
 
-    //APIレベル24以上のAndroidだと分割ウィンドウモードではアクティブにならないので、
-    //プレーヤを初期化する必要がある
     override fun onStart() {
         super.onStart()
         initializePlayer()
