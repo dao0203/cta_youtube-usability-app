@@ -44,6 +44,24 @@ class VideoFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //コントロールビューが表示されている間はボトムナビゲーションビューを表示
+        binding.videoView.setControllerVisibilityListener(PlayerView.ControllerVisibilityListener { visibility ->
+            val bottomNavigationView =
+                requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+            bottomNavigationView.visibility = when (visibility) {
+                View.VISIBLE -> View.VISIBLE//コントロールビューが表示されてる時は表示
+                else -> View.GONE//コントロールビューが非表示の時は非表示
+            }
+        })
+        //MediaControllerの取得
+//        controllerFuture.addListener({
+//            val mediaController = controllerFuture.get()
+//            binding.videoView.player = mediaController
+//        }, MoreExecutors.directExecutor())
+    }
+
     override fun onStart() {
         super.onStart()
         initializePlayer()
