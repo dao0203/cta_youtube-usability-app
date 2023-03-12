@@ -19,14 +19,12 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(binding.navHostFragment.id)
         val navController = navHostFragment?.findNavController()
         binding.bottomNavigationView.setupWithNavController(navController!!)
+
+        //ボトムナビゲーションビューを非表示にするかどうかのリスナー設定
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            //動画画面かつ横画面の時、ボトムナビゲーションバーが削除
-            if (destination.id == R.id.video_destination &&
-                resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
-            ) {
-                //ボトムナビゲーションビューの削除
-                binding.bottomNavigationView.isVisible = false
-                //アクションバーの削除
+
+            //動画画面の時、アクションバーを削除
+            if (destination.id == R.id.video_destination) {
                 supportActionBar?.hide()
                 //いずれも、この状態以外では表示されるっぽい
             }
