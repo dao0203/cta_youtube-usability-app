@@ -8,5 +8,4 @@
     <string name="title_layout_setting">レイアウト設定</string>
     <string name="title_movie">動画</string>
     <string name="error_text">エラーが発生しました</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
