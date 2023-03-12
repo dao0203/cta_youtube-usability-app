@@ -22,8 +22,13 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             //動画画面かつ横画面の時、ボトムナビゲーションバーが削除
             if (destination.id == R.id.video_destination &&
-                resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+            ) {
+                //ボトムナビゲーションビューの削除
                 binding.bottomNavigationView.isVisible = false
+                //アクションバーの削除
+                supportActionBar?.hide()
+                //いずれも、この状態以外では表示されるっぽい
             }
         }
     }
