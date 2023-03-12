@@ -1,9 +1,7 @@
 package com.example.cta_youtube_usability_app
 
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.cta_youtube_usability_app.databinding.ActivityMainBinding
@@ -26,8 +24,12 @@ class MainActivity : AppCompatActivity() {
             //動画画面の時、アクションバーを削除
             if (destination.id == R.id.video_destination) {
                 supportActionBar?.hide()
-                //いずれも、この状態以外では表示されるっぽい
             }
+            //設定画面のアクションバーを表示（hide()すると戻らないため）
+            if (destination.id == R.id.setting_destination){
+                supportActionBar?.show()
+            }
+
         }
     }
 }
