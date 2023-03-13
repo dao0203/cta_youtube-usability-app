@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.media3.common.MediaItem
 import androidx.media3.common.util.UnstableApi
@@ -53,6 +54,11 @@ class VideoFragment : Fragment() {
             bottomNavigationView.visibility = when (visibility) {
                 View.VISIBLE -> View.VISIBLE//コントロールビューが表示されてる時は表示
                 else -> View.GONE//コントロールビューが非表示の時は非表示
+            }
+            val actionBar = (activity as AppCompatActivity).supportActionBar
+            when(visibility){
+                View.VISIBLE -> actionBar?.show()
+                else -> actionBar?.hide()
             }
         })
         //MediaControllerの取得
