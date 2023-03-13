@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
 
             //動画画面の時、アクションバーを削除
-            if (destination.id == R.id.video_destination) {
+            if (destination.id == R.id.youtube_layout_destination) {
                 supportActionBar?.hide()
             }
             //設定画面のアクションバーを表示（hide()すると戻らないため）

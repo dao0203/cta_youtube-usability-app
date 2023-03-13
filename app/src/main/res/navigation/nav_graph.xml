@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_host_fragment"
-    app:startDestination="@id/video_destination">
+    app:startDestination="@id/youtube_layout_destination">
 
     <fragment
         android:id="@+id/setting_destination"
@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_setting" />
 
     <fragment
-        android:id="@+id/video_destination"
-        android:name="com.example.cta_youtube_usability_app.movie.VideoFragment"
+        android:id="@+id/youtube_layout_destination"
+        android:name="com.example.cta_youtube_usability_app.movie.YouTubeLayoutFragment"
         android:label="fragment_video"
-        tools:layout="@layout/fragment_video" />
+        tools:layout="@layout/fragment_youtube_layout" />
 
 </navigation>
