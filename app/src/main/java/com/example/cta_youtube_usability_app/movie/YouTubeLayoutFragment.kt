@@ -12,17 +12,17 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import com.example.cta_youtube_usability_app.R
-import com.example.cta_youtube_usability_app.databinding.FragmentVideoBinding
+import com.example.cta_youtube_usability_app.databinding.FragmentYoutubeLayoutBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 //TODO:縦・横画面の向きを変更した時に動画が最初からにならないようにする
 //TODO: MediaSessionServiceを実装？（コメントアウトしてる）
 
 @UnstableApi
-class VideoFragment : Fragment() {
+class YouTubeLayoutFragment : Fragment() {
 
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
-        FragmentVideoBinding.inflate(layoutInflater)
+        FragmentYoutubeLayoutBinding.inflate(layoutInflater)
     }
     private var player: ExoPlayer? = null
 
@@ -102,11 +102,11 @@ class VideoFragment : Fragment() {
     private fun releasePlayer() {
         player?.let { exoplayer ->
             //現在の再生位置を保存
-            this@VideoFragment.playbackPosition = exoplayer.currentPosition
+            this@YouTubeLayoutFragment.playbackPosition = exoplayer.currentPosition
             //ウィンドウインデックスを保存
-            this@VideoFragment.currentWindow = exoplayer.currentMediaItemIndex
+            this@YouTubeLayoutFragment.currentWindow = exoplayer.currentMediaItemIndex
             //再生・一時停止状態を保存
-            this@VideoFragment.playWhenReady = exoplayer.playWhenReady
+            this@YouTubeLayoutFragment.playWhenReady = exoplayer.playWhenReady
             exoplayer.release()
         }
         player = null
