@@ -5,16 +5,26 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.cta_youtube_usability_app.R
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.example.cta_youtube_usability_app.databinding.FragmentChooseControllerLayoutBinding
+import com.example.cta_youtube_usability_app.setting.SelectedLayoutIdRepository
+import kotlinx.coroutines.launch
 
 class ChooseControllerLayoutFragment : Fragment() {
-
+    private var binding: FragmentChooseControllerLayoutBinding? = null
+    private val chooseControllerLayoutViewModel: ChooseControllerLayoutViewModel by viewModels{
+        ChooseControllerLayoutViewModelFactory(SelectedLayoutIdRepository(requireContext()))
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_choose_controller_layout, container, false)
+        binding = FragmentChooseControllerLayoutBinding.inflate(layoutInflater)
+        return binding!!.root
     }
 
 }
