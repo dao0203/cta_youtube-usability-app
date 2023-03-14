@@ -23,17 +23,17 @@
     </fragment>
     <fragment
         android:id="@+id/leftHandedLayoutFragment"
-        android:name="com.example.cta_youtube_usability_app.movie.LeftHandedLayoutFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.operated_fragment.LeftHandedLayoutFragment"
         android:label="fragment_left_handed_layout"
         tools:layout="@layout/fragment_left_handed_layout" />
     <fragment
         android:id="@+id/youTubeLayoutFragment"
-        android:name="com.example.cta_youtube_usability_app.movie.YouTubeLayoutFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.operated_fragment.YouTubeLayoutFragment"
         android:label="fragment_youtube_layout"
         tools:layout="@layout/fragment_youtube_layout" />
     <fragment
         android:id="@+id/rightHandedLayoutFragment"
-        android:name="com.example.cta_youtube_usability_app.movie.RightHandedLayoutFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.operated_fragment.RightHandedLayoutFragment"
         android:label="fragment_right_handed_layout"
         tools:layout="@layout/fragment_right_handed_layout" />
 </navigation>

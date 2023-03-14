@@ -1,4 +1,4 @@
-package com.example.cta_youtube_usability_app.movie
+package com.example.cta_youtube_usability_app.movie.operated_fragment
 
 import android.os.Build
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.media3.common.MediaItem
 import androidx.media3.common.util.UnstableApi
