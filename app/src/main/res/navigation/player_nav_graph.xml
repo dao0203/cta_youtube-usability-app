@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/player_nav_graph"
-    app:startDestination="@id/chooseControllerLayoutFragment">
+    app:startDestination="@id/loadingFragment">
 
 
     <fragment
@@ -12,14 +12,8 @@
         android:label="fragment_choose_controller_layout"
         tools:layout="@layout/fragment_choose_controller_layout" >
         <action
-            android:id="@+id/action_chooseControllerLayoutFragment_to_leftHandedLayoutFragment"
-            app:destination="@id/leftHandedLayoutFragment" />
-        <action
-            android:id="@+id/action_chooseControllerLayoutFragment_to_youTubeLayoutFragment"
-            app:destination="@id/youTubeLayoutFragment" />
-        <action
-            android:id="@+id/action_chooseControllerLayoutFragment_to_rightHandedLayoutFragment"
-            app:destination="@id/rightHandedLayoutFragment" />
+            android:id="@+id/action_chooseControllerLayoutFragment_to_loadingFragment"
+            app:destination="@id/loadingFragment" />
     </fragment>
     <fragment
         android:id="@+id/leftHandedLayoutFragment"
@@ -36,4 +30,19 @@
         android:name="com.example.cta_youtube_usability_app.movie.operated_fragment.RightHandedLayoutFragment"
         android:label="fragment_right_handed_layout"
         tools:layout="@layout/fragment_right_handed_layout" />
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.operated_fragment.LoadingFragment"
+        android:label="fragment_loading"
+        tools:layout="@layout/fragment_loading" >
+        <action
+            android:id="@+id/action_loadingFragment_to_youTubeLayoutFragment"
+            app:destination="@id/youTubeLayoutFragment" />
+        <action
+            android:id="@+id/action_loadingFragment_to_leftHandedLayoutFragment"
+            app:destination="@id/leftHandedLayoutFragment" />
+        <action
+            android:id="@+id/action_loadingFragment_to_rightHandedLayoutFragment"
+            app:destination="@id/rightHandedLayoutFragment" />
+    </fragment>
 </navigation>
