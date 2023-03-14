@@ -15,9 +15,10 @@ import kotlinx.coroutines.launch
 
 class ChooseControllerLayoutFragment : Fragment() {
     private var binding: FragmentChooseControllerLayoutBinding? = null
-    private val chooseControllerLayoutViewModel: ChooseControllerLayoutViewModel by viewModels{
+    private val chooseControllerLayoutViewModel: ChooseControllerLayoutViewModel by viewModels {
         ChooseControllerLayoutViewModelFactory(SelectedLayoutIdRepository(requireContext()))
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,4 +28,19 @@ class ChooseControllerLayoutFragment : Fragment() {
         return binding!!.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
+                chooseControllerLayoutViewModel.getEachSelectedLayoutId()
+                chooseControllerLayoutViewModel.chooseControllerLayoutUiState.collect { value ->
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }
