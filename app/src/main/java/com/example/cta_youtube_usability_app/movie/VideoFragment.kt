@@ -55,11 +55,6 @@ class VideoFragment : Fragment() {
                 View.VISIBLE -> View.VISIBLE//コントロールビューが表示されてる時は表示
                 else -> View.GONE//コントロールビューが非表示の時は非表示
             }
-            val actionBar = (activity as AppCompatActivity).supportActionBar
-            when(visibility){
-                View.VISIBLE -> actionBar?.show()
-                else -> actionBar?.hide()
-            }
         })
         //MediaControllerの取得
 //        controllerFuture.addListener({
