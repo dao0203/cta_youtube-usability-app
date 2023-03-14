@@ -17,19 +17,5 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(binding.navHostFragment.id)
         val navController = navHostFragment?.findNavController()
         binding.bottomNavigationView.setupWithNavController(navController!!)
-
-        //ボトムナビゲーションビューを非表示にするかどうかのリスナー設定
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-
-            //動画画面の時、アクションバーを削除
-            if (destination.id == R.id.youtube_layout_destination) {
-                supportActionBar?.hide()
-            }
-            //設定画面のアクションバーを表示（hide()すると戻らないため）
-            if (destination.id == R.id.setting_destination){
-                supportActionBar?.show()
-            }
-
-        }
     }
 }
