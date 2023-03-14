@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/player_nav_graph"
+    app:startDestination="@id/chooseControllerLayoutFragment">
+
+
+    <fragment
+        android:id="@+id/chooseControllerLayoutFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.ChooseControllerLayoutFragment"
+        android:label="fragment_choose_controller_layout"
+        tools:layout="@layout/fragment_choose_controller_layout" >
+        <action
+            android:id="@+id/action_chooseControllerLayoutFragment_to_leftHandedLayoutFragment"
+            app:destination="@id/leftHandedLayoutFragment" />
+        <action
+            android:id="@+id/action_chooseControllerLayoutFragment_to_youTubeLayoutFragment"
+            app:destination="@id/youTubeLayoutFragment" />
+        <action
+            android:id="@+id/action_chooseControllerLayoutFragment_to_rightHandedLayoutFragment"
+            app:destination="@id/rightHandedLayoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/leftHandedLayoutFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.LeftHandedLayoutFragment"
+        android:label="fragment_left_handed_layout"
+        tools:layout="@layout/fragment_left_handed_layout" />
+    <fragment
+        android:id="@+id/youTubeLayoutFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.YouTubeLayoutFragment"
+        android:label="fragment_youtube_layout"
+        tools:layout="@layout/fragment_youtube_layout" />
+    <fragment
+        android:id="@+id/rightHandedLayoutFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.RightHandedLayoutFragment"
+        android:label="fragment_right_handed_layout"
+        tools:layout="@layout/fragment_right_handed_layout" />
+</navigation>

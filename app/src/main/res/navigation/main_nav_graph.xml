@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_host_fragment"
-    app:startDestination="@id/youtube_layout_destination">
+    app:startDestination="@id/chooseControllerLayoutFragment">
 
     <fragment
         android:id="@+id/setting_destination"
@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_setting" />
 
     <fragment
-        android:id="@+id/youtube_layout_destination"
-        android:name="com.example.cta_youtube_usability_app.movie.YouTubeLayoutFragment"
-        android:label="fragment_video"
-        tools:layout="@layout/fragment_youtube_layout" />
+        android:id="@+id/chooseControllerLayoutFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.ChooseControllerLayoutFragment"
+        android:label="fragment_choose_controller_layout"
+        tools:layout="@layout/fragment_choose_controller_layout" />
 
 </navigation>
