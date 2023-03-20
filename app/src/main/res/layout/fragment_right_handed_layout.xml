@@ -7,14 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".movie.operated_fragment.RightHandedLayoutFragment">
 
-    <TextView
-        android:text="右利き"
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/video_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        app:controller_layout_id="@layout/controller_right_handed_layout"
+        app:show_timeout="10000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:resize_mode="fixed_width"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

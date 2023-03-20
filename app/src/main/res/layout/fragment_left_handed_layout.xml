@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/left_handed_layout_destination"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/left_handed_layout_destination"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".movie.operated_fragment.LeftHandedLayoutFragment">
-    <TextView
-        android:text="左利き"
+
+    <androidx.media3.ui.PlayerView
+        android:id="@+id/video_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_height="0dp"
+        app:controller_layout_id="@layout/controller_left_handed_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:resize_mode="fixed_width"
+        app:show_timeout="10000"
+        tools:layout_editor_absoluteX="0dp" />
 
 </FrameLayout>
