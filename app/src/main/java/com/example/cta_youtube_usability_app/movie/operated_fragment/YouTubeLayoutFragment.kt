@@ -2,6 +2,7 @@ package com.example.cta_youtube_usability_app.movie.operated_fragment
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -46,6 +47,7 @@ class YouTubeLayoutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.e("YpuTubeLayoutFragment","遷移しました")
         //コントロールビューが表示されている間はボトムナビゲーションビューを表示
         binding.videoView.setControllerVisibilityListener(PlayerView.ControllerVisibilityListener { visibility ->
             val bottomNavigationView =
@@ -73,8 +75,8 @@ class YouTubeLayoutFragment : Fragment() {
         hideSystemUi()
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         releasePlayer()
     }
 
