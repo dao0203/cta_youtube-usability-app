@@ -47,7 +47,7 @@ class YouTubeLayoutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e("YpuTubeLayoutFragment","遷移しました")
+        Log.e("YouTubeLayoutFragment","遷移しました")
         //コントロールビューが表示されている間はボトムナビゲーションビューを表示
         binding.videoView.setControllerVisibilityListener(PlayerView.ControllerVisibilityListener { visibility ->
             val bottomNavigationView =
@@ -79,7 +79,6 @@ class YouTubeLayoutFragment : Fragment() {
         super.onPause()
         releasePlayer()
     }
-
 
     private fun hideSystemUi() {
         //APIレベルが30以上の時
