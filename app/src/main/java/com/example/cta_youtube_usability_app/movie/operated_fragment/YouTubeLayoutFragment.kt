@@ -47,7 +47,7 @@ class YouTubeLayoutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e("YouTubeLayoutFragment","遷移しました")
+        Log.e("LeftHandedLayoutFragment","遷移しました")
         //コントロールビューが表示されている間はボトムナビゲーションビューを表示
         binding.videoView.setControllerVisibilityListener(PlayerView.ControllerVisibilityListener { visibility ->
             val bottomNavigationView =

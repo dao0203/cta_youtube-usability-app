@@ -18,7 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:resize_mode="fixed_width"
-        app:show_timeout="10000"
-        tools:layout_editor_absoluteX="0dp" />
+        app:show_timeout="10000" />
 
 </FrameLayout>

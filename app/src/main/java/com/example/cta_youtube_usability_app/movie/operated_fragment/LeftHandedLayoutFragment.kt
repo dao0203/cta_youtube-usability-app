@@ -41,7 +41,7 @@ class LeftHandedLayoutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.e("LeftHandedLayoutFragment","遷移しました")
+        Log.e("YouTubeLayoutFragment","遷移しました")
         //コントロールビューが表示されている間はボトムナビゲーションビューを表示
         binding.videoView.setControllerVisibilityListener(PlayerView.ControllerVisibilityListener { visibility ->
             val bottomNavigationView =
@@ -72,9 +72,7 @@ class LeftHandedLayoutFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         releasePlayer()
-//        findNavController().popBackStack(R.id.chooseControllerLayoutFragment,false)
     }
-
 
     private fun hideSystemUi() {
         //APIレベルが30以上の時
