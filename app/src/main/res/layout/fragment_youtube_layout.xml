@@ -2,17 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/video_destination"
+    android:id="@+id/youtube_layout_destination"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".movie.VideoFragment">
+    tools:context=".movie.operated_fragment.YouTubeLayoutFragment">
 
     <androidx.media3.ui.PlayerView
         android:id="@+id/video_view"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        app:controller_layout_id="@layout/youtube_layout"
+        app:controller_layout_id="@layout/controller_youtube_layout"
         app:show_timeout="10000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_host_fragment"
+    app:startDestination="@id/chooseControllerLayoutFragment">
+
+    <fragment
+        android:id="@+id/setting_destination"
+        android:name="com.example.cta_youtube_usability_app.setting.view.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+
+    <fragment
+        android:id="@+id/chooseControllerLayoutFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.ChooseControllerLayoutFragment"
+        android:label="fragment_choose_controller_layout"
+        tools:layout="@layout/fragment_choose_controller_layout" >
+        <action
+            android:id="@+id/action_chooseControllerLayoutFragment_to_loadingFragment"
+            app:destination="@id/loadingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.operated_fragment.LoadingFragment"
+        android:label="fragment_loading"
+        tools:layout="@layout/fragment_loading" >
+        <action
+            android:id="@+id/action_loadingFragment_to_leftHandedLayoutFragment"
+            app:destination="@id/leftHandedLayoutFragment" />
+        <action
+            android:id="@+id/action_loadingFragment_to_youTubeLayoutFragment"
+            app:destination="@id/youTubeLayoutFragment" />
+        <action
+            android:id="@+id/action_loadingFragment_to_rightHandedLayoutFragment"
+            app:destination="@id/rightHandedLayoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/leftHandedLayoutFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.operated_fragment.LeftHandedLayoutFragment"
+        android:label="fragment_left_handed_layout"
+        tools:layout="@layout/fragment_left_handed_layout" >
+        <action
+            android:id="@+id/action_leftHandedLayoutFragment_to_chooseControllerLayoutFragment"
+            app:destination="@id/chooseControllerLayoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rightHandedLayoutFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.operated_fragment.RightHandedLayoutFragment"
+        android:label="fragment_right_handed_layout"
+        tools:layout="@layout/fragment_right_handed_layout" >
+        <action
+            android:id="@+id/action_rightHandedLayoutFragment_to_chooseControllerLayoutFragment"
+            app:destination="@id/chooseControllerLayoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/youTubeLayoutFragment"
+        android:name="com.example.cta_youtube_usability_app.movie.operated_fragment.YouTubeLayoutFragment"
+        android:label="fragment_youtube_layout"
+        tools:layout="@layout/fragment_youtube_layout" >
+        <action
+            android:id="@+id/action_youTubeLayoutFragment_to_chooseControllerLayoutFragment"
+            app:destination="@id/chooseControllerLayoutFragment" />
+    </fragment>
+
+</navigation>

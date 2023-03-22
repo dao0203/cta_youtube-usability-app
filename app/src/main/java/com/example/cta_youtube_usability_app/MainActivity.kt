@@ -17,5 +17,18 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(binding.navHostFragment.id)
         val navController = navHostFragment?.findNavController()
         binding.bottomNavigationView.setupWithNavController(navController!!)
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when(it.itemId) {
+                R.id.chooseControllerLayoutFragment -> {
+                    navController.navigate(R.id.chooseControllerLayoutFragment)
+                    true
+                }
+                R.id.setting_destination -> {
+                    navController.navigate(R.id.setting_destination)
+                    true
+                }
+                else -> true
+            }
+        }
     }
 }

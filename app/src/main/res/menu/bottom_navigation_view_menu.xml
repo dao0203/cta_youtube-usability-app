@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/video_destination"
+        android:id="@+id/chooseControllerLayoutFragment"
         android:enabled="true"
         android:icon="@drawable/baseline_smart_display_24"
         android:title="@string/title_movie"

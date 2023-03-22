@@ -1,29 +1,23 @@
-package com.example.cta_youtube_usability_app.movie
+package com.example.cta_youtube_usability_app.movie.operated_fragment
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.media3.common.MediaItem
-import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.PlayerView
 import com.example.cta_youtube_usability_app.R
-import com.example.cta_youtube_usability_app.databinding.FragmentVideoBinding
+import com.example.cta_youtube_usability_app.databinding.FragmentLeftHandedLayoutBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-//TODO:縦・横画面の向きを変更した時に動画が最初からにならないようにする
-//TODO: MediaSessionServiceを実装？（コメントアウトしてる）
-
-@UnstableApi
-class VideoFragment : Fragment() {
-
+class LeftHandedLayoutFragment : Fragment() {
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
-        FragmentVideoBinding.inflate(layoutInflater)
+        FragmentLeftHandedLayoutBinding.inflate(layoutInflater)
     }
     private var player: ExoPlayer? = null
 
@@ -47,6 +41,7 @@ class VideoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.e("YouTubeLayoutFragment","遷移しました")
         //コントロールビューが表示されている間はボトムナビゲーションビューを表示
         binding.videoView.setControllerVisibilityListener(PlayerView.ControllerVisibilityListener { visibility ->
             val bottomNavigationView =
@@ -74,11 +69,10 @@ class VideoFragment : Fragment() {
         hideSystemUi()
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         releasePlayer()
     }
-
 
     private fun hideSystemUi() {
         //APIレベルが30以上の時
@@ -103,11 +97,11 @@ class VideoFragment : Fragment() {
     private fun releasePlayer() {
         player?.let { exoplayer ->
             //現在の再生位置を保存
-            this@VideoFragment.playbackPosition = exoplayer.currentPosition
+            this@LeftHandedLayoutFragment.playbackPosition = exoplayer.currentPosition
             //ウィンドウインデックスを保存
-            this@VideoFragment.currentWindow = exoplayer.currentMediaItemIndex
+            this@LeftHandedLayoutFragment.currentWindow = exoplayer.currentMediaItemIndex
             //再生・一時停止状態を保存
-            this@VideoFragment.playWhenReady = exoplayer.playWhenReady
+            this@LeftHandedLayoutFragment.playWhenReady = exoplayer.playWhenReady
             exoplayer.release()
         }
         player = null
